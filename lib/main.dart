@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:phinder/chat.dart';
+import 'package:phinder/exercise.dart';
+import 'package:phinder/social.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,6 +16,9 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => MyHomePage(),
         '/joinUs': (context) => JoinUs(),
+        '/social': (context) => Social(),
+        '/chat': (context) => ChatScreen(),
+        '/exercise': (context) => ExerciseScreen(),
       },
     );
   }
@@ -78,6 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   CustomButton(
                       onTap: () {
                         print('Tap Sign In button!');
+                        Navigator.pushNamed(context, '/social');
                       },
                       str: 'Sign In',
                       backgroundColor: Colors.transparent,
