@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:phinder/chat.dart';
+import 'package:phinder/detail.dart';
 import 'package:phinder/exercise.dart';
+import 'package:phinder/explore.dart';
+import 'package:phinder/finish.dart';
 import 'package:phinder/joinus.dart';
 import 'package:phinder/social.dart';
+import 'package:phinder/step1.dart';
+import 'package:phinder/step2.dart';
+import 'package:phinder/step3.dart';
+import 'package:phinder/match.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,6 +27,13 @@ class MyApp extends StatelessWidget {
         '/social': (context) => Social(),
         '/chat': (context) => ChatScreen(),
         '/exercise': (context) => ExerciseScreen(),
+        '/step1': (context) => Step1(),
+        '/step2': (context) => Step2(),
+        '/step3': (context) => Step3(),
+        '/finish': (context) => Finish(),
+        '/explore': (context) => Explore(),
+        '/detail': (context) => Detail(),
+        '/match': (context) => Match(),
       },
     );
   }
