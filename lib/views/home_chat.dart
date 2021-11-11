@@ -17,7 +17,7 @@ class _HomeChatState extends State<HomeChat> {
     final username = _usernameController.text;
     if (username.isNotEmpty) {
       final client = StreamChat.of(context).client;
-      final user = client.state.user;
+      final user = client.state.currentUser;
 
       if (user == null) {
         setState(() => {_loading = true});
