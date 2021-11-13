@@ -15,37 +15,45 @@ class _FinishState extends State<Finish> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          appBar: AppBar(
-            title: Text('Finish'),
-          ),
           body: Container(
-            // child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
+        // child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                  flex: 2,
+                  child:
+                      Center(child: Image.asset('assets/screens/congrat.png'))),
+              Expanded(
+                  child: Center(
+                      child: Column(
                 children: [
-                  Expanded(child: Center(child: Text('Congratulation!'))),
-                  CustomButton(
-                    onTap: () {
-                      Navigator.pop(context);
-                      Navigator.pop(context);
-                      Navigator.pop(context);
-                      Navigator.pop(context);
-                      Navigator.popAndPushNamed(context, '/explore');
-                    },
-                    str: 'Next',
-                    backgroundColor: Colors.grey,
-                    borderColor: Colors.transparent,
-                    textColor: Colors.white,
-                    width: double.infinity,
-                  )
+                  Text('Congrats!', style: TextStyle(fontSize: 30.0)),
+                  Text('Your account has been set up!'),
                 ],
-              ),
-            ),
-            // ),
-          )),
+              ))),
+              CustomButton(
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                  Navigator.popAndPushNamed(context, '/explore');
+                },
+                str: 'Explore Phinder',
+                backgroundColor: Colors.grey,
+                borderColor: Colors.transparent,
+                textColor: Colors.white,
+                width: double.infinity,
+              )
+            ],
+          ),
+        ),
+        // ),
+      )),
     );
   }
 }

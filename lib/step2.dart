@@ -9,41 +9,69 @@ class Step2 extends StatefulWidget {
 }
 
 class _Step2State extends State<Step2> {
-  bool isVisible = false;
-  List<bool> isSelected = [false, false, false, false, false];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          appBar: AppBar(
-            title: Text('Step2'),
-          ),
+          appBar: PreferredSize(
+              preferredSize: Size.fromHeight(80.0),
+              child: AppBar(
+                  iconTheme: IconThemeData(color: Colors.black),
+                  flexibleSpace: Row(
+                    children: [
+                      Expanded(
+                          child: Container(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text('Step 2 of 3\nTell us your hobby',
+                                textAlign: TextAlign.center),
+                          ],
+                        ),
+                      )),
+                      Image.asset('assets/screens/hoppy.png',
+                          fit: BoxFit.fitHeight),
+                    ],
+                  ),
+                  backgroundColor: Color.fromARGB(255, 248, 207, 97))),
           body: Container(
             // child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(12.0),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  ToggleButtons(
-                    borderWidth: 5.0,
-                    borderColor: Colors.transparent,
-                    selectedBorderColor: Colors.transparent,
-                    children: <Widget>[
-                      Icon(Icons.directions_run),
-                      Icon(Icons.directions_walk),
-                      Icon(Icons.self_improvement),
-                      Text('Tennis'),
-                      Text('Swimming'),
-                    ],
-                    onPressed: (int index) {
-                      setState(() {
-                        isSelected[index] = !isSelected[index];
-                      });
-                    },
-                    isSelected: isSelected,
+                  Expanded(
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Row(children: [
+                            Toggle(txt: 'Running'),
+                            SizedBox(width: 30.0),
+                            Toggle(txt: 'Walking'),
+                            SizedBox(width: 30.0),
+                            Toggle(txt: 'Doing push-ups'),
+                          ]),
+                          Row(children: [
+                            Toggle(txt: 'Yoga'),
+                            SizedBox(width: 30.0),
+                            Toggle(txt: 'Chatting when I\'m free'),
+                          ]),
+                          Row(children: [
+                            Toggle(txt: 'Tennis'),
+                            SizedBox(width: 30.0),
+                            Toggle(txt: 'Golf'),
+                            SizedBox(width: 30.0),
+                            Toggle(txt: 'Swimming'),
+                          ]),
+                          Row(children: [
+                            Toggle(txt: 'Going to the gym'),
+                            SizedBox(width: 30.0),
+                            Toggle(txt: 'Basketball'),
+                          ]),
+                        ]),
                   ),
+                  Expanded(child: Container()),
                   CustomButton(
                     onTap: () {
                       Navigator.pushNamed(context, '/step3');
@@ -59,6 +87,37 @@ class _Step2State extends State<Step2> {
             ),
             // ),
           )),
+    );
+  }
+}
+
+class Toggle extends StatefulWidget {
+  const Toggle({required this.txt});
+  final String txt;
+  @override
+  _ToggleState createState() => _ToggleState();
+}
+
+class _ToggleState extends State<Toggle> {
+  bool _isSelected = false;
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        setState(() {
+          _isSelected = !_isSelected;
+        });
+      },
+      child: Container(
+        decoration: BoxDecoration(
+            color: _isSelected ? Colors.blue[100] : Colors.transparent,
+            border: Border.all(color: Colors.blueGrey),
+            borderRadius: BorderRadius.circular(10.0)),
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Text(widget.txt),
+        ),
+      ),
     );
   }
 }

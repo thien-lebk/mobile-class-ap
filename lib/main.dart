@@ -54,14 +54,13 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Scaffold(
         body: Container(
           decoration: BoxDecoration(
-            image: DecorationImage(
-              colorFilter: ColorFilter.mode(
-                  Color.fromRGBO(38, 38, 38, 70), BlendMode.srcOver),
-              fit: BoxFit.fitHeight,
-              image: NetworkImage(
-                  'https://images.pexels.com/photos/6740316/pexels-photo-6740316.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'),
-            ),
-          ),
+              image: DecorationImage(
+            colorFilter: ColorFilter.mode(
+                Color.fromRGBO(38, 38, 38, 70), BlendMode.srcOver),
+            fit: BoxFit.fitHeight,
+            image: NetworkImage(
+                'https://images.pexels.com/photos/6740316/pexels-photo-6740316.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'),
+          )),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
