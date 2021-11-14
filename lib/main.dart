@@ -10,6 +10,7 @@ import 'package:phinder/step1.dart';
 import 'package:phinder/step2.dart';
 import 'package:phinder/step3.dart';
 import 'package:phinder/match.dart';
+import 'package:phinder/detailedExercise.dart';
 
 void main() {
   runApp(MyApp());
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
         '/explore': (context) => Explore(),
         '/detail': (context) => Detail(),
         '/match': (context) => Match(),
+        '/detailedExercise': (context) => DetailedExercise(),
       },
     );
   }
