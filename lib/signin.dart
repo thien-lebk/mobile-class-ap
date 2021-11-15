@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:phinder/api.dart';
 import 'package:phinder/main.dart';
 
 //! Join Us page
 //!----------------------------------------------
-class JoinUs extends StatefulWidget {
-  const JoinUs({Key? key}) : super(key: key);
+class SignIn extends StatefulWidget {
+  const SignIn({Key? key}) : super(key: key);
   @override
-  _JoinUsState createState() => _JoinUsState();
+  _SignInState createState() => _SignInState();
 }
 
-class _JoinUsState extends State<JoinUs> {
+class _SignInState extends State<SignIn> {
+  String email = '';
+  String password = '';
   bool isVisible = false;
   @override
   Widget build(BuildContext context) {
@@ -47,6 +50,9 @@ class _JoinUsState extends State<JoinUs> {
                           Container(
                               height: 40.0,
                               child: TextField(
+                                  onChanged: (val) {
+                                    email = val;
+                                  },
                                   decoration: InputDecoration(
                                       contentPadding: EdgeInsets.symmetric(
                                           horizontal: 10.0, vertical: 2.0),
@@ -59,29 +65,9 @@ class _JoinUsState extends State<JoinUs> {
                           Container(
                               height: 40.0,
                               child: TextField(
-                                  obscureText: isVisible ? false : true,
-                                  decoration: InputDecoration(
-                                      suffixIcon: InkWell(
-                                          onTap: () {
-                                            print('toggle obscure text');
-                                            setState(() {
-                                              isVisible = !isVisible;
-                                            });
-                                          },
-                                          child: Icon(isVisible
-                                              ? Icons.visibility
-                                              : Icons.visibility_off)),
-                                      contentPadding: EdgeInsets.symmetric(
-                                          horizontal: 10.0, vertical: 2.0),
-                                      border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(32.0))))),
-                          SizedBox(height: 20.0),
-                          Text('Confirm Password'),
-                          SizedBox(height: 5.0),
-                          Container(
-                              height: 40.0,
-                              child: TextField(
+                                  onChanged: (val) {
+                                    password = val;
+                                  },
                                   obscureText: isVisible ? false : true,
                                   decoration: InputDecoration(
                                       suffixIcon: InkWell(
@@ -101,10 +87,15 @@ class _JoinUsState extends State<JoinUs> {
                                               BorderRadius.circular(32.0))))),
                           SizedBox(height: 20.0),
                           CustomButton(
-                            onTap: () {
-                              Navigator.pushNamed(context, '/step1');
+                            onTap: () async {
+                              print('email: ' + email);
+                              print('password: ' + password);
+                              String token = await signIn(
+                                  email: email, password: password);
+                              print('token: $token');
+                              Navigator.pushNamed(context, '/social');
                             },
-                            str: 'Join Us',
+                            str: 'Sign In',
                             backgroundColor: Colors.grey,
                             borderColor: Colors.transparent,
                             textColor: Colors.white,
@@ -112,11 +103,11 @@ class _JoinUsState extends State<JoinUs> {
                           ),
                           GestureDetector(
                               onTap: () {
-                                Navigator.popAndPushNamed(context, '/signIn');
+                                Navigator.popAndPushNamed(context, '/joinUs');
                               },
                               child: Center(
                                   child: Text(
-                                "Sign In",
+                                "Join Us",
                                 style: TextStyle(
                                     decoration: TextDecoration.underline,
                                     color: Colors.blue),

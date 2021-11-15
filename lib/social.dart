@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:phinder/chat.dart';
+import 'package:phinder/common.dart';
 import 'package:phinder/exercise.dart';
+import 'package:phinder/explore.dart';
 
 class Social extends StatefulWidget {
   const Social({Key? key}) : super(key: key);
@@ -13,49 +15,24 @@ class _SocialState extends State<Social> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: SafeArea(
         child: Scaffold(
-          body:
-              // Container(
-              //   child: Column(
-              //     children: [
-              //       Text('Trang chính'),
-              //       SizedBox(height: 20),
-              //       InkWell(
-              //           onTap: () {
-              //             Navigator.pushNamed(context, '/chat');
-              //           },
-              //           child: Text('Nhấn vô để làm trang chat')),
-              //       SizedBox(height: 20),
-              //       InkWell(
-              //           onTap: () {
-              //             Navigator.pushNamed(context, '/exercise');
-              //           },
-              //           child: Text('Nhấn vô để làm trang exercise'))
-              //     ],
-              //   ),
-              // ),
-              TabBarView(
+          body: TabBarView(
+            physics: NeverScrollableScrollPhysics(),
             children: [
+              Common(),
               ExerciseScreen(),
               ChatScreen(),
             ],
           ),
           bottomNavigationBar: TabBar(
+            labelColor: Colors.black,
+            unselectedLabelColor: Colors.grey[500],
             tabs: [
-              Tab(
-                child: Text(
-                  'Exercise',
-                  style: TextStyle(color: Colors.black),
-                ),
-              ),
-              Tab(
-                child: Text(
-                  'Chat',
-                  style: TextStyle(color: Colors.black),
-                ),
-              ),
+              Tab(child: Text('Explore')),
+              Tab(child: Text('Exercise')),
+              Tab(child: Text('Chat')),
             ],
           ),
         ),

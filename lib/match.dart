@@ -26,15 +26,26 @@ class _MatchState extends State<Match> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Expanded(child: Center(child: Text('It\'s a match!'))),
+                  Expanded(
+                      flex: 2,
+                      child: Center(
+                          child: Image.asset('assets/screens/match.png'))),
+                  Expanded(
+                      child: Center(
+                          child: Column(
+                    children: [
+                      Text('It\'s a match!', style: TextStyle(fontSize: 30.0)),
+                      Text('Now you can send message to each others'),
+                    ],
+                  ))),
                   CustomButton(
                     onTap: () {
-                      Navigator.pushNamed(context, '/explore');
+                      Navigator.pushNamed(context, '/social');
                     },
                     str: 'Keep swiping',
-                    backgroundColor: Colors.grey,
-                    borderColor: Colors.transparent,
-                    textColor: Colors.white,
+                    backgroundColor: Colors.white,
+                    borderColor: Colors.black,
+                    textColor: Colors.black,
                     width: double.infinity,
                   ),
                   CustomButton(
@@ -42,8 +53,8 @@ class _MatchState extends State<Match> {
                       Navigator.pushNamed(context, '/chat');
                     },
                     str: 'Send a Hi!',
-                    backgroundColor: Colors.grey,
-                    borderColor: Colors.transparent,
+                    backgroundColor: Colors.black,
+                    borderColor: Colors.black,
                     textColor: Colors.white,
                     width: double.infinity,
                   ),

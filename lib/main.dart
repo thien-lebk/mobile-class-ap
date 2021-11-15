@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:phinder/chat.dart';
+import 'package:phinder/common.dart';
 import 'package:phinder/detail.dart';
 import 'package:phinder/exercise.dart';
 import 'package:phinder/explore.dart';
 import 'package:phinder/finish.dart';
 import 'package:phinder/joinus.dart';
+import 'package:phinder/signin.dart';
 import 'package:phinder/social.dart';
 import 'package:phinder/step1.dart';
 import 'package:phinder/step2.dart';
@@ -25,6 +27,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => MyHomePage(),
         '/joinUs': (context) => JoinUs(),
+        '/common': (context) => Common(),
+        '/signIn': (context) => SignIn(),
         '/social': (context) => Social(),
         '/chat': (context) => ChatScreen(),
         '/exercise': (context) => ExerciseScreen(),
@@ -100,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   CustomButton(
                       onTap: () {
                         print('Tap Sign In button!');
-                        Navigator.pushNamed(context, '/social');
+                        Navigator.pushNamed(context, '/signIn');
                       },
                       str: 'Sign In',
                       backgroundColor: Colors.transparent,
