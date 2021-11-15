@@ -15,9 +15,27 @@ class _Step3State extends State<Step3> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          appBar: AppBar(
-            title: Text('Step3'),
-          ),
+          appBar: PreferredSize(
+              preferredSize: Size.fromHeight(80.0),
+              child: AppBar(
+                  iconTheme: IconThemeData(color: Colors.black),
+                  flexibleSpace: Row(
+                    children: [
+                      Expanded(
+                          child: Container(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text('Step 3 of 3\nUpload your image',
+                                textAlign: TextAlign.center),
+                          ],
+                        ),
+                      )),
+                      Image.asset('assets/screens/capture.png',
+                          fit: BoxFit.fitHeight),
+                    ],
+                  ),
+                  backgroundColor: Color.fromARGB(255, 248, 207, 97))),
           body: Container(
             // child: SingleChildScrollView(
             child: Padding(
@@ -28,22 +46,33 @@ class _Step3State extends State<Step3> {
                 children: [
                   Row(
                     children: [
-                      CustomButton(
-                        onTap: () {},
-                        str: 'Choose from devive',
-                        backgroundColor: Colors.grey,
-                        borderColor: Colors.transparent,
-                        textColor: Colors.white,
-                        width: 150.0,
-                      ),
-                      CustomButton(
-                        onTap: () {},
-                        str: 'Capture image',
-                        backgroundColor: Colors.grey,
-                        borderColor: Colors.transparent,
-                        textColor: Colors.white,
-                        width: 150.0,
-                      ),
+                      Expanded(
+                          child: InkWell(
+                              onTap: () {},
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.all(color: Colors.grey),
+                                      borderRadius:
+                                          BorderRadius.circular(20.0)),
+                                  child: Icon(
+                                    Icons.cloud_upload_outlined,
+                                    size: 40,
+                                    color: Colors.blueGrey,
+                                  )))),
+                      SizedBox(width: 20.0),
+                      Expanded(
+                          child: InkWell(
+                              onTap: () {},
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.all(color: Colors.grey),
+                                      borderRadius:
+                                          BorderRadius.circular(20.0)),
+                                  child: Icon(
+                                    Icons.photo_camera_outlined,
+                                    size: 40,
+                                    color: Colors.blueGrey,
+                                  )))),
                     ],
                   ),
                   Row(
