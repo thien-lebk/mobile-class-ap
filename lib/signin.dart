@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:phinder/api.dart';
 import 'package:phinder/main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 //! Join Us page
 //!----------------------------------------------
@@ -92,7 +93,18 @@ class _SignInState extends State<SignIn> {
                               print('password: ' + password);
                               String token = await signIn(
                                   email: email, password: password);
+                              if (token.length > 1) {
+                                SharedPreferences prefs =
+                                    await SharedPreferences.getInstance();
+                                prefs.setString('token', token);
+                              }
                               print('token: $token');
+
+                              print('***Test API***');
+                              SharedPreferences prefs =
+                                  await SharedPreferences.getInstance();
+                              String t = prefs.getString('token') ?? "*";
+                              await getUser(token: t);
                               Navigator.pushNamed(context, '/social');
                             },
                             str: 'Sign In',
