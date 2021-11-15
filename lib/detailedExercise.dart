@@ -29,8 +29,8 @@ class _DetailedExerciseState extends State<DetailedExercise> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Image.network(
-                        'https://images.unsplash.com/photo-1571008887538-b36bb32f4571?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cnVubmluZ3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80'),
+                    Image.asset(
+                        'assets/running.jpg'),
                     Padding(
                       padding: const EdgeInsets.only(left: 10.0),
                       child: Text('Run in 30 seconds', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold))
@@ -42,8 +42,8 @@ class _DetailedExerciseState extends State<DetailedExercise> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Image.network(
-                        'https://images.unsplash.com/photo-1571008887538-b36bb32f4571?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cnVubmluZ3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80'),
+                    Image.asset(
+                        'assets/running.jpg'),
                     Padding(
                         padding: const EdgeInsets.only(left: 10.0),
                         child: Text('Walk in 1 minute', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold))
@@ -56,8 +56,8 @@ class _DetailedExerciseState extends State<DetailedExercise> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Image.network(
-                        'https://images.unsplash.com/photo-1571008887538-b36bb32f4571?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cnVubmluZ3xlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80'),
+                    Image.asset(
+                        'assets/running.jpg'),
                     Padding(
                         padding: const EdgeInsets.only(left: 10.0),
                         child: Text('Repeat 6 times', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold))

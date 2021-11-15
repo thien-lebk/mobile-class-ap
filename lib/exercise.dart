@@ -47,8 +47,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                               colorFilter: ColorFilter.mode(
                                   Color.fromRGBO(38, 38, 38, 70),
                                   BlendMode.srcOver),
-                              image: NetworkImage(
-                                  'https://dungcutheduc.vn/images/khong-nen-hit-dat-moi-ngay.jpg'),
+                              image: AssetImage('assets/burnout.jpg'),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -81,220 +80,93 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('All challenges',
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold)),
-                    Text('Running',
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold)),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0), 
+                      child: Text('All challenges', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold))
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0),
+                      child: Text('Running', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),  
+                    ), 
                     SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-
-                          children: [
-                            Stack(
-                              children: <Widget>[
-                                Container(
-                                  alignment: Alignment.center,
-                                  child: Image.network(
-                                      'https://dungcutheduc.vn/images/khong-nen-hit-dat-moi-ngay.jpg',
-                                      width: 112),
-                                ),
-                                Container(
-                                  alignment: Alignment.center,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text('Running',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white)),
-                                      Text('20 minutes',
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.white)),
-                                      Text('Intermediate',
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.white))
-                                    ],
-                                  ),
-                                )
-                              ],
+                        child: ConstrainedBox(
+                            constraints: BoxConstraints(
+                              minWidth: 700
                             ),
-                            Stack(
-                              children: <Widget>[
-                                Container(
-                                  alignment: Alignment.center,
-                                  child: Image.network(
-                                      'https://dungcutheduc.vn/images/khong-nen-hit-dat-moi-ngay.jpg',
-                                      width: 112),
-                                ),
-                                Container(
-                                  alignment: Alignment.center,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Stack(
+                                children: <Widget>[
+                                  Image.asset('assets/burnout.jpg', width: 100, colorBlendMode: BlendMode.darken,),
+                                  Column(
                                     children: [
-                                      Text('Running',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white)),
-                                      Text('20 minutes',
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.white)),
-                                      Text('Intermediate',
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.white))
+                                      Text('abc', style: TextStyle(color: Colors.white)),
+                                      Text('abc',style: TextStyle(color: Colors.white))
                                     ],
-                                  ),
-                                )
-                              ],
-                            ),
-                            Stack(
-                              children: <Widget>[
-                                Container(
-                                  alignment: Alignment.center,
-                                  child: Image.network(
-                                      'https://dungcutheduc.vn/images/khong-nen-hit-dat-moi-ngay.jpg',
-                                      width: 112),
-                                ),
-                                Container(
-                                  alignment: Alignment.center,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                  )
+                                ],
+                              ),
+                              Stack(
+                                children: <Widget>[
+                                  Image.asset('assets/burnout.jpg', width: 100),
+                                  Column(
                                     children: [
-                                      Text('Running',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white)),
-                                      Text('20 minutes',
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.white)),
-                                      Text('Intermediate',
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.white))
+                                      Text('abc', style: TextStyle(color: Colors.white)),
+                                      Text('abc',style: TextStyle(color: Colors.white))
                                     ],
-                                  ),
-                                )
-                              ],
-                            ),
-                            Stack(
-                              children: <Widget>[
-                                Container(
-                                  alignment: Alignment.center,
-                                  child: Image.network(
-                                      'https://dungcutheduc.vn/images/khong-nen-hit-dat-moi-ngay.jpg',
-                                      width: 112),
-                                ),
-                                Container(
-                                  alignment: Alignment.center,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                  )
+                                ],
+                              ),
+                              Stack(
+                                children: <Widget>[
+                                  Image.asset('assets/burnout.jpg', width: 100),
+                                  Column(
                                     children: [
-                                      Text('Running',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white)),
-                                      Text('20 minutes',
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.white)),
-                                      Text('Intermediate',
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.white))
+                                      Text('abc', style: TextStyle(color: Colors.white)),
+                                      Text('abc',style: TextStyle(color: Colors.white))
                                     ],
-                                  ),
-                                )
-                              ],
-                            ),
-                            Stack(
-                              children: <Widget>[
-                                Container(
-                                  alignment: Alignment.center,
-                                  child: Image.network(
-                                      'https://dungcutheduc.vn/images/khong-nen-hit-dat-moi-ngay.jpg',
-                                      width: 112),
-                                ),
-                                Container(
-                                  alignment: Alignment.center,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                  )
+                                ],
+                              ),
+                              Stack(
+                                children: <Widget>[
+                                  Image.asset('assets/burnout.jpg', width: 100),
+                                  Column(
                                     children: [
-                                      Text('Running',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white)),
-                                      Text('20 minutes',
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.white)),
-                                      Text('Intermediate',
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.white))
+                                      Text('abc', style: TextStyle(color: Colors.white)),
+                                      Text('abc',style: TextStyle(color: Colors.white))
                                     ],
-                                  ),
-                                )
-                              ],
-                            ),
-                            Stack(
-                              children: <Widget>[
-                                Container(
-                                  alignment: Alignment.center,
-                                  child: Image.network(
-                                      'https://dungcutheduc.vn/images/khong-nen-hit-dat-moi-ngay.jpg',
-                                      width: 112),
-                                ),
-                                Container(
-                                  alignment: Alignment.center,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                  )
+                                ],
+                              ),
+                              Stack(
+                                children: <Widget>[
+                                  Image.asset('assets/burnout.jpg', width: 100),
+                                  Column(
                                     children: [
-                                      Text('Running',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white)),
-                                      Text('20 minutes',
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.white)),
-                                      Text('Intermediate',
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              color: Colors.white))
+                                      Text('abc', style: TextStyle(color: Colors.white)),
+                                      Text('abc',style: TextStyle(color: Colors.white))
                                     ],
-                                  ),
-                                )
-                              ],
-                            ),
-
-                          ],
-                        ))
+                                  )
+                                ],
+                              ),
+                              Stack(
+                                children: <Widget>[
+                                  Image.asset('assets/burnout.jpg', width: 100, colorBlendMode: BlendMode.srcOver,),
+                                  Column(
+                                    children: [
+                                      Text('abc', style: TextStyle(color: Colors.white)),
+                                      Text('abc',style: TextStyle(color: Colors.white))
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ],
+                          ))
+                      )
                   ],
                 )),
           ],
