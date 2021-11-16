@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:phinder/main.dart';
 
 class Step3 extends StatefulWidget {
@@ -18,6 +19,7 @@ class _Step3State extends State<Step3> {
           appBar: PreferredSize(
               preferredSize: Size.fromHeight(80.0),
               child: AppBar(
+                  elevation: 0,
                   iconTheme: IconThemeData(color: Colors.black),
                   flexibleSpace: Row(
                     children: [
@@ -27,7 +29,12 @@ class _Step3State extends State<Step3> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text('Step 3 of 3\nUpload your image',
-                                textAlign: TextAlign.center),
+                                textAlign: TextAlign.left,
+                                style: GoogleFonts.poppins(
+                                    textStyle: TextStyle(
+                                        color: Colors.black87,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500))),
                           ],
                         ),
                       )),
@@ -118,7 +125,7 @@ class _Step3State extends State<Step3> {
                     onTap: () {
                       Navigator.pushNamed(context, '/finish');
                     },
-                    str: 'Next',
+                    str: 'Done',
                     backgroundColor: Colors.grey,
                     borderColor: Colors.transparent,
                     textColor: Colors.white,
