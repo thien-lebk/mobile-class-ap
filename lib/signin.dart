@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:phinder/api.dart';
 import 'package:phinder/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -22,6 +23,7 @@ class _SignInState extends State<SignIn> {
             appBar: PreferredSize(
                 preferredSize: Size.fromHeight(80.0),
                 child: AppBar(
+                  elevation: 0,
                   iconTheme: IconThemeData(color: Colors.black),
                   flexibleSpace: Row(
                     children: [
@@ -41,12 +43,17 @@ class _SignInState extends State<SignIn> {
             body: GestureDetector(
                 onTap: () => FocusScope.of(context).unfocus(),
                 child: Padding(
-                    padding: const EdgeInsets.all(12.0),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 16, horizontal: 24),
                     child: SingleChildScrollView(
                         child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                          Text('Email'),
+                          Text(
+                            'EMAIL',
+                            style: TextStyle(
+                                fontSize: 12, fontWeight: FontWeight.bold),
+                          ),
                           SizedBox(height: 5.0),
                           Container(
                               height: 40.0,
@@ -61,7 +68,11 @@ class _SignInState extends State<SignIn> {
                                           borderRadius:
                                               BorderRadius.circular(32.0))))),
                           SizedBox(height: 20.0),
-                          Text('Password'),
+                          Text(
+                            'PASSWORD',
+                            style: TextStyle(
+                                fontSize: 12, fontWeight: FontWeight.bold),
+                          ),
                           SizedBox(height: 5.0),
                           Container(
                               height: 40.0,
@@ -118,12 +129,10 @@ class _SignInState extends State<SignIn> {
                                 Navigator.popAndPushNamed(context, '/joinUs');
                               },
                               child: Center(
-                                  child: Text(
-                                "Join Us",
-                                style: TextStyle(
-                                    decoration: TextDecoration.underline,
-                                    color: Colors.blue),
-                              )))
+                                  child: Text("Create a new account",
+                                      style: GoogleFonts.poppins(
+                                          color: Colors.blue,
+                                          textStyle: TextStyle(fontSize: 14)))))
                         ]))))));
   }
 }

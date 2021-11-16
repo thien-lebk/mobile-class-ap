@@ -13,6 +13,7 @@ import 'package:phinder/step2.dart';
 import 'package:phinder/step3.dart';
 import 'package:phinder/match.dart';
 import 'package:phinder/detailedExercise.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.blue),
       initialRoute: '/',
       routes: {
@@ -79,12 +81,14 @@ class _MyHomePageState extends State<MyHomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('Phinder',
-                            style:
-                                TextStyle(fontSize: 48, color: Colors.white)),
-                        Text(
-                          'Explore friends - Workout together',
-                          style: TextStyle(color: Colors.white),
-                        )
+                            style: GoogleFonts.poppins(
+                                fontWeight: FontWeight.w500,
+                                textStyle: TextStyle(
+                                    fontSize: 48, color: Colors.white))),
+                        Text('Explore friends - Workout together',
+                            style: GoogleFonts.poppins(
+                                color: Colors.white,
+                                textStyle: TextStyle(fontSize: 18)))
                       ],
                     ),
                   )),
@@ -130,7 +134,7 @@ class CustomButton extends StatelessWidget {
       required this.backgroundColor,
       required this.borderColor,
       required this.textColor,
-      this.width = 120.0})
+      this.width = 162.0})
       : super(key: key);
   final VoidCallback onTap;
   final String str;
@@ -146,13 +150,16 @@ class CustomButton extends StatelessWidget {
             decoration: BoxDecoration(
                 border: Border.all(color: borderColor),
                 color: backgroundColor,
-                borderRadius: BorderRadius.circular(12)),
+                borderRadius: BorderRadius.circular(32)),
             width: width,
-            height: 32,
+            height: 48,
             child: Center(
                 child: Text(
               str,
-              style: TextStyle(color: textColor),
+              style: GoogleFonts.poppins(
+                  color: textColor,
+                  fontWeight: FontWeight.w500,
+                  textStyle: TextStyle(fontSize: 16)),
             ))));
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:phinder/main.dart';
 
 class Step2 extends StatefulWidget {
@@ -16,6 +17,7 @@ class _Step2State extends State<Step2> {
           appBar: PreferredSize(
               preferredSize: Size.fromHeight(80.0),
               child: AppBar(
+                  elevation: 0,
                   iconTheme: IconThemeData(color: Colors.black),
                   flexibleSpace: Row(
                     children: [
@@ -24,8 +26,14 @@ class _Step2State extends State<Step2> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text('Step 2 of 3\nTell us your hobby',
-                                textAlign: TextAlign.center),
+                            Text(
+                                'Step 2 of 3\nTell us your hobby                            ',
+                                textAlign: TextAlign.left,
+                                style: GoogleFonts.poppins(
+                                    textStyle: TextStyle(
+                                        color: Colors.black87,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500))),
                           ],
                         ),
                       )),
@@ -47,26 +55,26 @@ class _Step2State extends State<Step2> {
                         children: [
                           Row(children: [
                             Toggle(txt: 'Running'),
-                            SizedBox(width: 30.0),
+                            SizedBox(width: 10.0),
                             Toggle(txt: 'Walking'),
-                            SizedBox(width: 30.0),
+                            SizedBox(width: 10.0),
                             Toggle(txt: 'Doing push-ups'),
                           ]),
                           Row(children: [
                             Toggle(txt: 'Yoga'),
-                            SizedBox(width: 30.0),
+                            SizedBox(width: 10.0),
                             Toggle(txt: 'Chatting when I\'m free'),
                           ]),
                           Row(children: [
                             Toggle(txt: 'Tennis'),
-                            SizedBox(width: 30.0),
+                            SizedBox(width: 10.0),
                             Toggle(txt: 'Golf'),
-                            SizedBox(width: 30.0),
+                            SizedBox(width: 10.0),
                             Toggle(txt: 'Swimming'),
                           ]),
                           Row(children: [
                             Toggle(txt: 'Going to the gym'),
-                            SizedBox(width: 30.0),
+                            SizedBox(width: 10.0),
                             Toggle(txt: 'Basketball'),
                           ]),
                         ]),

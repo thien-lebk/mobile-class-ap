@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:phinder/main.dart';
 
 class Finish extends StatefulWidget {
@@ -31,8 +32,14 @@ class _FinishState extends State<Finish> {
                   child: Center(
                       child: Column(
                 children: [
-                  Text('Congrats!', style: TextStyle(fontSize: 30.0)),
-                  Text('Your account has been set up!'),
+                  Text('Congrats!',
+                      style: GoogleFonts.poppins(
+                          textStyle: TextStyle(
+                              fontSize: 32, fontWeight: FontWeight.w500))),
+                  Text('Your account has been set up successfully',
+                      style: GoogleFonts.poppins(
+                          textStyle: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.w500))),
                 ],
               ))),
               CustomButton(
@@ -44,7 +51,7 @@ class _FinishState extends State<Finish> {
                   Navigator.popAndPushNamed(context, '/explore');
                 },
                 str: 'Explore Phinder',
-                backgroundColor: Colors.grey,
+                backgroundColor: Colors.black87,
                 borderColor: Colors.transparent,
                 textColor: Colors.white,
                 width: double.infinity,
