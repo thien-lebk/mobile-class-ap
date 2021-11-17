@@ -17,11 +17,13 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: StreamChat(
-        child: ChannelListPage(),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      builder: (context, child) => StreamChat(
         client: widget.client,
+        child: child,
       ),
+      home: const ChannelListPage(),
     );
   }
 }
