@@ -13,8 +13,12 @@ import 'package:phinder/step1.dart';
 import 'package:phinder/step2.dart';
 import 'package:phinder/step3.dart';
 import 'package:phinder/match.dart';
-import 'package:phinder/detailedExercise.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:phinder/workout/arm.dart';
+import 'package:phinder/workout/leg.dart';
+import 'package:phinder/workout/abs.dart';
+import 'package:phinder/workout/fullbody.dart';
+import 'package:phinder/workout/butt.dart';
 
 void main() {
   runApp(MyApp());
@@ -43,7 +47,11 @@ class MyApp extends StatelessWidget {
         '/explore': (context) => Explore(),
         '/detail': (context) => Detail(),
         '/match': (context) => Match(),
-        '/detailedExercise': (context) => DetailedExercise(),
+        '/abs': (context) => AbsWorkout(),
+        '/arm': (context) => ArmWorkout(),
+        '/leg': (context) => LegWorkout(),
+        '/fullbody': (context) => FullBodyWorkout(),
+        '/butt': (context) => ButtWorkout(),
       },
     );
   }

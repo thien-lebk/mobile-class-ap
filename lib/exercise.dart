@@ -37,7 +37,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                 child: InkWell(
                     onTap: () {
                       print('Tap to detailed exercise');
-                      Navigator.pushNamed(context, '/detailedExercise');
+                      Navigator.pushNamed(context, '/abs');
                     },
                     child: Stack(
                       children: <Widget>[
@@ -58,15 +58,15 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Lower-Body Burnout',
+                              Text('ABS WORKOUT',
                                   style: TextStyle(
                                       fontSize: 28,
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white)),
-                              Text('20 minutes',
+                              Text('6-10 minutes',
                                   style: TextStyle(
                                       fontSize: 16, color: Colors.white)),
-                              Text('Intermediate',
+                              Text('Hard',
                                   style: TextStyle(
                                       fontSize: 16, color: Colors.white))
                             ],
@@ -81,92 +81,101 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 10.0), 
+                      padding: const EdgeInsets.only(left: 15.0, bottom: 5.0), 
                       child: Text('All challenges', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold))
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 10.0),
-                      child: Text('Running', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),  
+                      padding: const EdgeInsets.only(left: 15.0, bottom: 5.0),
+                      child: Text('Workout', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),  
                     ), 
                     SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
-                        child: ConstrainedBox(
+                        child: Padding(
+                        padding: const EdgeInsets.only(left: 15.0),
+                        child:
+                          ConstrainedBox(
                             constraints: BoxConstraints(
-                              minWidth: 700
+                              minWidth: 420
                             ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Stack(
-                                children: <Widget>[
-                                  Image.asset('assets/burnout.jpg', width: 100, colorBlendMode: BlendMode.darken,),
-                                  Column(
-                                    children: [
-                                      Text('abc', style: TextStyle(color: Colors.white)),
-                                      Text('abc',style: TextStyle(color: Colors.white))
-                                    ],
-                                  )
-                                ],
+                              InkWell(
+                                onTap: () {
+                                  print('Tap to leg workout');
+                                  Navigator.pushNamed(context, '/leg');
+                                },
+                                child: Stack(
+                                  children: <Widget>[
+                                    Image.asset('assets/legWorkout.jpg', width: 90, height: 90, fit: BoxFit.cover),
+                                    Column(
+                                      children: [
+                                        Text('Leg', style: TextStyle(color: Colors.white, fontSize: 14)),
+                                        Text('Workout', style: TextStyle(color: Colors.white, fontSize: 14)),
+                                        Text('5-10 minutes',style: TextStyle(color: Colors.white, fontSize: 10))
+                                      ],
+                                    )
+                                  ],
+                                ),
                               ),
-                              Stack(
-                                children: <Widget>[
-                                  Image.asset('assets/burnout.jpg', width: 100),
-                                  Column(
-                                    children: [
-                                      Text('abc', style: TextStyle(color: Colors.white)),
-                                      Text('abc',style: TextStyle(color: Colors.white))
-                                    ],
-                                  )
-                                ],
+                              InkWell(
+                                onTap: () {
+                                  print('Tap to full body workout');
+                                  Navigator.pushNamed(context, '/fullbody');
+                                },
+                                child: Stack(
+                                  children: <Widget>[
+                                    Image.asset('assets/fullbodyWorkOut.jpg', width: 90,  height: 90, fit: BoxFit.cover),
+                                    Column(
+                                      children: [
+                                        Text('Full Body', style: TextStyle(color: Colors.white,fontSize: 14)),
+                                        Text('Workout', style: TextStyle(color: Colors.white,fontSize: 14)),
+                                        Text('5-10 minutes',style: TextStyle(color: Colors.white, fontSize: 10))
+                                      ],
+                                    )
+                                  ],
+                                )
                               ),
-                              Stack(
-                                children: <Widget>[
-                                  Image.asset('assets/burnout.jpg', width: 100),
-                                  Column(
-                                    children: [
-                                      Text('abc', style: TextStyle(color: Colors.white)),
-                                      Text('abc',style: TextStyle(color: Colors.white))
-                                    ],
-                                  )
-                                ],
+                              InkWell(
+                                onTap: () {
+                                  print('Tap to arm workout');
+                                  Navigator.pushNamed(context, '/arm');
+                                },
+                                child: Stack(
+                                  children: <Widget>[
+                                    Image.asset('assets/armWorkout.jpg', width: 90, height: 90, fit: BoxFit.cover),
+                                    Column(
+                                      children: [
+                                        Text('Arm', style: TextStyle(color: Colors.white,fontSize: 14)),
+                                        Text('Workout', style: TextStyle(color: Colors.white,fontSize: 14)),
+                                        Text('5-10 minutes',style: TextStyle(color: Colors.white))
+                                      ],
+                                    )
+                                  ],
+                                )
                               ),
-                              Stack(
-                                children: <Widget>[
-                                  Image.asset('assets/burnout.jpg', width: 100),
-                                  Column(
-                                    children: [
-                                      Text('abc', style: TextStyle(color: Colors.white)),
-                                      Text('abc',style: TextStyle(color: Colors.white))
-                                    ],
-                                  )
-                                ],
-                              ),
-                              Stack(
-                                children: <Widget>[
-                                  Image.asset('assets/burnout.jpg', width: 100),
-                                  Column(
-                                    children: [
-                                      Text('abc', style: TextStyle(color: Colors.white)),
-                                      Text('abc',style: TextStyle(color: Colors.white))
-                                    ],
-                                  )
-                                ],
-                              ),
-                              Stack(
-                                children: <Widget>[
-                                  Image.asset('assets/burnout.jpg', width: 100, colorBlendMode: BlendMode.srcOver,),
-                                  Column(
-                                    children: [
-                                      Text('abc', style: TextStyle(color: Colors.white)),
-                                      Text('abc',style: TextStyle(color: Colors.white))
-                                    ],
-                                  )
-                                ],
+                              InkWell(
+                                onTap: () {
+                                  print('Tap to butt workout');
+                                  Navigator.pushNamed(context, '/butt');
+                                },
+                                child: Stack(
+                                  children: <Widget>[
+                                    Image.asset('assets/buttWorkout.jpg', width: 90, height: 90, fit: BoxFit.cover),
+                                    Column(
+                                      children: [
+                                        Text('Butt', style: TextStyle(color: Colors.white,fontSize: 14)),
+                                        Text('Workout', style: TextStyle(color: Colors.white,fontSize: 14)),
+                                        Text('5-10 minutes',style: TextStyle(color: Colors.white))
+                                      ],
+                                    )
+                                  ],
+                                )
                               ),
                             ],
                           ))
-                      )
+                      ))
                   ],
                 )),
           ],

@@ -52,8 +52,9 @@ flutter:
 
   assets:
     - assets/screens/
-    - assets/burnout.jpg
-    - assets/running.jpg
+    - assets/
+    - assets/abs/
+    - assets/leg/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
