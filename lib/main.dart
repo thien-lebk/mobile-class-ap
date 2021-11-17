@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:phinder/api.dart';
 import 'package:phinder/chat.dart';
 import 'package:phinder/common.dart';
 import 'package:phinder/detail.dart';
@@ -34,18 +35,29 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => MyHomePage(),
         '/joinUs': (context) => JoinUs(),
-        '/common': (context) => Common(),
+        '/common': (context) => Common(
+              token: '-',
+            ),
         '/signIn': (context) => SignIn(),
         '/forgot': (context) => Forgot(),
-        '/social': (context) => Social(),
+        '/social': (context) => Social(
+              token: '-',
+            ),
         '/chat': (context) => ChatScreen(),
         '/exercise': (context) => ExerciseScreen(),
         '/step1': (context) => Step1(),
-        '/step2': (context) => Step2(),
-        '/step3': (context) => Step3(),
+        // '/step2': (context) => Step2(
+        //       fullName: '-',
+        //       aboutYou: '-',
+        //       dob: '-',
+        //       listHoppy: [],
+        //       token: '-',
+        //     ),
+        // '/step3': (context) => Step3(
+        //     fullName: '-', aboutYou: '-', dob: '-', hobbies: [], token: '-'),
         '/finish': (context) => Finish(),
-        '/explore': (context) => Explore(),
-        '/detail': (context) => Detail(),
+        // '/explore': (context) => Explore(userInfo: UserInfo,),
+        // '/detail': (context) => Detail(),
         '/match': (context) => Match(),
         '/abs': (context) => AbsWorkout(),
         '/arm': (context) => ArmWorkout(),

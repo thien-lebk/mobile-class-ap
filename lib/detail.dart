@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:phinder/api.dart';
 import 'package:phinder/main.dart';
 
 class Detail extends StatefulWidget {
-  const Detail({Key? key}) : super(key: key);
+  final int userID;
+  final String token;
+  const Detail({required this.userID, required this.token, Key? key})
+      : super(key: key);
 
   @override
   _DetailState createState() => _DetailState();
@@ -13,7 +17,40 @@ class _DetailState extends State<Detail> {
   List<bool> isSelected = [false, false, false, false, false];
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    print('Current userID: ' + widget.userID.toString());
+    return
+        // FutureBuilder(
+        //     future: getPost(token: widget.token, userId: widget.userID.toString()),
+        //     builder: (BuildContext context, AsyncSnapshot snapshot) {
+        //       if (snapshot.hasError)
+        //         return Center(child: Text('Cannot connect to server!'));
+        //       else {
+        //         if (snapshot.connectionState == ConnectionState.done) {
+        //           print(snapshot.data);
+        //           // List<UserInfo> listUser = snapshot.data;
+        //           return Text('------');
+        //           // return PageView.builder(
+        //           //     itemCount: listUser.length,
+        //           //     scrollDirection: Axis.vertical,
+        //           //     itemBuilder: (context, index) {
+        //           //       print('Index: $index' + ' UserId: ${listUser[index].id}');
+        //           //       return PageView(
+        //           //         children: [
+        //           //           Explore(
+        //           //             userInfo: listUser[index],
+        //           //           ),
+        //           //           Detail(
+        //           //             userID: int.parse(listUser[index].id),
+        //           //           ),
+        //           //         ],
+        //           //       );
+        //           //     });
+        //         } else
+        //           return Center(child: CircularProgressIndicator());
+        //       }
+        //     });
+
+        SafeArea(
       child: Scaffold(
           appBar: AppBar(
             leading: Container(),

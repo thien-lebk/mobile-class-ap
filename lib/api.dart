@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:path/path.dart';
 
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -22,14 +23,14 @@ Future<String> signIn({required String email, required String password}) async {
     print('Status code: ${response.statusCode}');
     print('Data: $responseData');
     if (response.statusCode != 201) {
-      print('Loi user nhap sai');
+      print('Wrong email or password');
       return '-';
     } else
       return responseData['access'];
   } catch (e) {
-    print('Loi network');
+    print('Network error');
     print(e);
-    return '-';
+    return '+';
   }
 }
 
@@ -56,8 +57,6 @@ class User {
   );
 
   factory User.fromJson(dynamic json) {
-    print('json');
-    print(json);
     return User(
         json['id'] as String,
         json['fullName'] as String,
@@ -83,57 +82,58 @@ class User {
   }
 }
 
-Future<String> getUser({required String token}) async {
-  //GET
-  print('Token: $token');
-  String url = API_LINK + 'user';
-  var uri = Uri.parse(url);
-  print(uri);
-  final response = await http
-      .get(uri, headers: {HttpHeaders.authorizationHeader: "Bearer $token"});
+Future<User> getUser({required String token}) async {
+  try {
+    print('Call api getUser');
+    String url = API_LINK + 'user';
+    var uri = Uri.parse(url);
+    print(uri);
+    final response = await http
+        .get(uri, headers: {HttpHeaders.authorizationHeader: "Bearer $token"});
 
-  print(response.body);
-  print(response.statusCode);
-  if (response.statusCode != 200) {
-    print(0);
-    return "-";
+    print(response.body);
+    print(response.statusCode);
+    if (response.statusCode != 200) {
+      print('Ger user error');
+      return User("-", "-", "-", "-", false, "-", [], []);
+    } else {
+      final extractedData =
+          json.decode(utf8.decode(response.bodyBytes)) as dynamic;
+      print(extractedData);
+      User obj = User.fromJson(extractedData['data']);
+      return obj;
+    }
+  } catch (e) {
+    print('Network error');
+    print(e);
+    return User("-", "-", "-", "-", false, "-", [], []);
   }
-  print(1);
-  final extractedData = json.decode(utf8.decode(response.bodyBytes)) as dynamic;
-  print(extractedData);
-  User obj = User.fromJson(extractedData['data']);
-  print('Đây là object nhận được từ api, nên return obj để dùng');
-  print(obj);
-  return "*";
 }
 
 //! --------------------------------------------------------------------
 Future<int> postResetPassword({required String email}) async {
   print('Call api reset password');
-  String url =
-      API_LINK + 'user/send-email-reset-password/' + Uri.encodeComponent(email);
+  String url = API_LINK + 'user/send-email-reset-password';
   var uri = Uri.parse(url);
   print(uri);
   try {
-    final response = await http.post(
-      uri,
-      // body: json.encode({"email": email, "password": password}),
-      // headers: {
-      //   "Content-Type": "application/json",
-      // }
-    );
+    final response =
+        await http.post(uri, body: json.encode({"email": email}), headers: {
+      "Content-Type": "application/json",
+    });
 
     print('***');
     final responseData = json.decode(response.body);
     print('Status code: ${response.statusCode}');
     print('Data: $responseData');
-    if (response.statusCode != 201) {
-      print('Wrong email');
-      return response.statusCode;
-    } else {
-      print('Recovery email sent');
-      return response.statusCode;
-    }
+    return response.statusCode;
+    // if (response.statusCode != 201) {
+    //   print('Wrong email');
+    //   return response.statusCode;
+    // } else {
+    //   print('Recovery email sent');
+    //   return response.statusCode;
+    // }
   } catch (e) {
     print('Network error');
     print(e);
@@ -233,43 +233,45 @@ class UserImage {
   }
 }
 
-Future<String> getUserList({required String token}) async {
-  print('Call api get user list');
-  print('Token: $token');
-  String url = API_LINK + 'user/list?perPage=100&page=1';
-  var uri = Uri.parse(url);
-  print(uri);
-  final response = await http
-      .get(uri, headers: {HttpHeaders.authorizationHeader: "Bearer $token"});
-  print('***');
-  // print(response.body);
-  // print(response.statusCode);
-  if (response.statusCode != 200) {
-    print('Unauthorize request');
-    return "-";
+Future<List<UserInfo>> getUserList({required String token}) async {
+  try {
+    print('Call api get user list');
+    print('Token: $token');
+    String url = API_LINK + 'user/list?perPage=100&page=1';
+    var uri = Uri.parse(url);
+    print(uri);
+    final response = await http
+        .get(uri, headers: {HttpHeaders.authorizationHeader: "Bearer $token"});
+    // print(response.body);
+    // print(response.statusCode);
+    if (response.statusCode != 200) {
+      print('Unauthorize request');
+      return [];
+    }
+    // print(json.decode(utf8.decode(response.bodyBytes))['data']['data']['data']);
+    final extractedData = json.decode(utf8.decode(response.bodyBytes))['data']
+        ['data']['data'] as List<dynamic>;
+    print(extractedData);
+    List<UserInfo> listUser = [];
+    for (var index in extractedData) {
+      listUser.add(UserInfo.fromJson(index));
+    }
+
+    return listUser;
+  } catch (e) {
+    print(e);
+    return [];
   }
-  // print(json.decode(utf8.decode(response.bodyBytes))['data']['data']['data']);
-  final extractedData = json.decode(utf8.decode(response.bodyBytes))['data']
-      ['data']['data'] as List<dynamic>;
-  print(extractedData);
-  print('Đây là object nhận được từ api, nên return obj để dùng');
-  List<UserInfo> listUser = [];
-  for (var index in extractedData) {
-    listUser.add(UserInfo.fromJson(index));
-  }
-  print('***+++***');
-  print(listUser[0].aboutYou);
-  return "*";
 }
 
 //! --------------------------------------------------------------------
-Future<String> registerAccount({
-  String email = "1",
-  String fullName = "1",
-  String aboutYou = "1",
-  String password = "1",
-  String phoneNumber = "0",
-  String dob = "1",
+Future<int> registerUser({
+  String email = "default",
+  String fullName = "default",
+  String aboutYou = "default",
+  String password = "default",
+  String phoneNumber = "default",
+  String dob = "default",
 }) async {
   print('Call API registerAccount');
   String url = API_LINK + 'user';
@@ -288,21 +290,300 @@ Future<String> registerAccount({
         headers: {
           "Content-Type": "application/json",
         });
+    return response.statusCode;
+  } catch (e) {
+    print('Network error');
+    print(e);
+    return -1;
+  }
+}
+
+//! --------------------------------------------------------------------
+//! --------------------------------------------------------------------
+//! --------------------------------------------------------------------
+
+Future<int> updateUser({
+  required String token,
+  required String fullName,
+  required String aboutYou,
+  required String dob,
+  String phoneNumber = "default",
+  required List<String> hobbies,
+}) async {
+  print('Call API updateAccount');
+  String url = API_LINK + 'user';
+  var uri = Uri.parse(url);
+  print(uri);
+  print(json.encode({
+    "fullName": fullName,
+    "aboutYou": aboutYou,
+    "dob": dob,
+    "phoneNumber": phoneNumber,
+    "hobbies": hobbies,
+  }));
+  try {
+    final response = await http.put(uri,
+        body: json.encode({
+          "fullName": fullName,
+          "aboutYou": aboutYou,
+          "dob": dob,
+          "phoneNumber": phoneNumber,
+          "hobbies": hobbies,
+        }),
+        headers: {
+          HttpHeaders.authorizationHeader: "Bearer $token",
+          "Content-Type": "application/json",
+        });
 
     print('***');
     final responseData = json.decode(response.body);
     print('Status code: ${response.statusCode}');
     print('Data: $responseData');
-    if (response.statusCode != 201) {
-      print('Register fail');
+    if (response.statusCode != 200) {
+      print('Update fail');
+      return response.statusCode;
+    } else {
+      print('Update OK');
+      return response.statusCode;
+    }
+  } catch (e) {
+    print('Network error');
+    print(e);
+    return -1;
+  }
+}
+
+Future<String> createPost({
+  required String token,
+  String title = "1",
+  String content = "1",
+  List<String> images = const [],
+}) async {
+  print('Call API createPost');
+  String url = API_LINK + 'post';
+  var uri = Uri.parse(url);
+  print(uri);
+  try {
+    final response = await http.post(uri,
+        body:
+            json.encode({"title": title, "content": content, "images": images}),
+        headers: {
+          HttpHeaders.authorizationHeader: "Bearer $token",
+          "Content-Type": "application/json",
+        });
+
+    print('***');
+    final responseData = json.decode(response.body);
+    print('Status code: ${response.statusCode}');
+    print('Data: $responseData');
+    if (response.statusCode != 200) {
+      print('Create post fail');
       return '-';
     } else {
-      print('Register OK');
+      print('Create post OK');
       return 'OK';
     }
   } catch (e) {
     print('Network error');
     print(e);
     return '-';
+  }
+}
+
+Future<String> editPost(
+    {required String token,
+    int id = 0,
+    String title = "1",
+    String content = "1",
+    List<String> images = const [],
+    bool isDeleted = false}) async {
+  print('Call API editPost');
+  String url = API_LINK + 'post';
+  var uri = Uri.parse(url);
+  print(uri);
+  try {
+    final response = await http.put(uri,
+        body: json.encode({
+          "id": id,
+          "title": title,
+          "content": content,
+          "images": images,
+          "isDeleted": isDeleted
+        }),
+        headers: {
+          HttpHeaders.authorizationHeader: "Bearer $token",
+          "Content-Type": "application/json",
+        });
+
+    print('***');
+    final responseData = json.decode(response.body);
+    print('Status code: ${response.statusCode}');
+    print('Data: $responseData');
+    if (response.statusCode != 200) {
+      print('Edit post fail');
+      return '-';
+    } else {
+      print('Edit post OK');
+      return 'OK';
+    }
+  } catch (e) {
+    print('Network error');
+    print(e);
+    return '-';
+  }
+}
+
+Future<String> getPost({required String token, required String userId}) async {
+  print('Call API editPost');
+  String url = API_LINK + 'post/' + userId;
+  var uri = Uri.parse(url);
+  print(uri);
+  try {
+    final response = await http.get(uri, headers: {
+      HttpHeaders.authorizationHeader: "Bearer $token",
+      "Content-Type": "application/json",
+    });
+
+    print('***');
+    final responseData = json.decode(response.body);
+    print('Status code: ${response.statusCode}');
+    print('Data: $responseData');
+    if (response.statusCode != 200) {
+      print('Get post fail');
+      return '-';
+    } else {
+      print('Get post OK');
+      return 'OK';
+    }
+  } catch (e) {
+    print('Network error');
+    print(e);
+    return '-';
+  }
+}
+
+Future<String> deletePost({required String token, String id = "0"}) async {
+  print('Call API editPost');
+  String url = API_LINK + 'post/' + id;
+  var uri = Uri.parse(url);
+  print(uri);
+  try {
+    final response = await http.delete(uri, headers: {
+      HttpHeaders.authorizationHeader: "Bearer $token",
+      "Content-Type": "application/json",
+    });
+
+    print('***');
+    final responseData = json.decode(response.body);
+    print('Status code: ${response.statusCode}');
+    print('Data: $responseData');
+    if (response.statusCode != 200) {
+      print('Delete post fail');
+      return '-';
+    } else {
+      print('Delete post OK');
+      return 'OK';
+    }
+  } catch (e) {
+    print('Network error');
+    print(e);
+    return '-';
+  }
+}
+
+Future uploadImage({required File toUploadFile, required String token}) async {
+  print('Call API upload image');
+  String url = API_LINK + 'image';
+  var uri = Uri.parse(url);
+  print(uri);
+
+  var stream = new http.ByteStream(toUploadFile.openRead());
+  stream.cast();
+  var length = await toUploadFile.length();
+  var request = new http.MultipartRequest("POST", uri);
+  request.headers['authorization'] = 'Bearer $token';
+  var filename = basename(toUploadFile.path);
+  var multipartFile =
+      new http.MultipartFile('file', stream, length, filename: filename);
+  request.files.add(multipartFile);
+  var response = await request.send();
+  var finalRes;
+  response.stream.transform(utf8.decoder).listen(
+    (value) {
+      finalRes = value;
+      print(value);
+    },
+    onDone: () {
+      print('Upload image satus: ' + jsonDecode(finalRes)['message']);
+    },
+  );
+}
+
+Future<String> deleteImage({required String token, String id = "0"}) async {
+  print('Call API editPost');
+  String url = API_LINK + 'image/' + id;
+  var uri = Uri.parse(url);
+  print(uri);
+  try {
+    final response = await http.delete(uri, headers: {
+      HttpHeaders.authorizationHeader: "Bearer $token",
+      "Content-Type": "application/json",
+    });
+
+    print('***');
+    final responseData = json.decode(response.body);
+    print('Status code: ${response.statusCode}');
+    print('Data: $responseData');
+    if (response.statusCode != 200) {
+      print('Delete post fail');
+      return '-';
+    } else {
+      print('Delete post OK');
+      return 'OK';
+    }
+  } catch (e) {
+    print('Network error');
+    print(e);
+    return '-';
+  }
+}
+
+Future<List<UserHobby>> getHoppy({required String token}) async {
+  print('Call API getHoppy');
+  String url = API_LINK + 'hobby';
+  var uri = Uri.parse(url);
+  print(uri);
+  try {
+    final response = await http.get(uri, headers: {
+      HttpHeaders.authorizationHeader: "Bearer $token",
+      "Content-Type": "application/json",
+    });
+
+    // print('***');
+    // final responseData = json.decode(response.body);
+    // print('Status code: ${response.statusCode}');
+    // print('Data: $responseData');
+
+    if (response.statusCode != 200) {
+      print('Get hoppy fail');
+      return [];
+    } else {
+      print('Get hoppy OK');
+
+      final extractedData =
+          json.decode(utf8.decode(response.bodyBytes)) as dynamic;
+      List<dynamic> data = extractedData['data'];
+      print(data);
+      List<UserHobby> lUserHoppy = [];
+      for (var index in data) {
+        lUserHoppy.add(UserHobby.fromJson(index));
+      }
+
+      return lUserHoppy;
+    }
+  } catch (e) {
+    print('Network error');
+    print(e);
+    return [];
   }
 }

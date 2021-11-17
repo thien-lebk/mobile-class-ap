@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:phinder/api.dart';
 import 'package:phinder/main.dart';
 
 class Explore extends StatefulWidget {
-  const Explore({Key? key}) : super(key: key);
+  final UserInfo userInfo;
+  const Explore({required this.userInfo, Key? key}) : super(key: key);
 
   @override
   _ExploreState createState() => _ExploreState();
@@ -28,28 +30,35 @@ class _ExploreState extends State<Explore> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(height: MediaQuery.of(context).size.width * 1 / 2),
+            Container(height: MediaQuery.of(context).size.width * 3 / 4),
             Expanded(
               // height: MediaQuery.of(context).size.width / 2,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Quỳnh Anh' + ' , ' + '26',
+                      widget.userInfo.fullName +
+                          ', ' +
+                          (2021 -
+                                  int.parse(
+                                      widget.userInfo.dob.substring(0, 4)))
+                              .toString(),
                       style: TextStyle(color: Colors.white, fontSize: 28),
                     ),
                     SizedBox(height: 20.0),
                     Text(
-                      'tempus imperdiet nulla malesuada pellentesque elit eget gravida cum sociis natoque penatibus et magnis dis parturient',
+                      widget.userInfo.aboutYou,
                       style:
                           TextStyle(color: Color.fromARGB(128, 255, 255, 255)),
                     ),
                     SizedBox(height: 20.0),
                     Text(
-                      ' Yoga ' + ' Swimming ',
+                      widget.userInfo.hobbies.length == 0
+                          ? "Don't have any hoppy"
+                          : widget.userInfo.hobbies[0].name,
                       style:
                           TextStyle(color: Color.fromARGB(128, 255, 255, 255)),
                     ),

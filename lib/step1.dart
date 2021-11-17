@@ -1,6 +1,10 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:phinder/api.dart';
 import 'package:phinder/main.dart';
+import 'package:phinder/step2.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Step1 extends StatefulWidget {
   const Step1({Key? key}) : super(key: key);
@@ -11,6 +15,13 @@ class Step1 extends StatefulWidget {
 
 class _Step1State extends State<Step1> {
   bool isVisible = false;
+  String fullName = "";
+  String day = "";
+  String month = "";
+  String year = "";
+  String dob = "";
+  String aboutYou = "";
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -62,6 +73,9 @@ class _Step1State extends State<Step1> {
                       Container(
                           height: 40.0,
                           child: TextField(
+                              onChanged: (val) {
+                                fullName = val;
+                              },
                               decoration: InputDecoration(
                                   contentPadding: EdgeInsets.symmetric(
                                       horizontal: 10.0, vertical: 2.0),
@@ -82,6 +96,9 @@ class _Step1State extends State<Step1> {
                             height: 40.0,
                             width: MediaQuery.of(context).size.width / 4,
                             child: TextField(
+                                onChanged: (val) {
+                                  day = val;
+                                },
                                 keyboardType: TextInputType.number,
                                 decoration: InputDecoration(
                                     hintText: "Day",
@@ -95,6 +112,9 @@ class _Step1State extends State<Step1> {
                             height: 40.0,
                             width: MediaQuery.of(context).size.width / 4,
                             child: TextField(
+                                onChanged: (val) {
+                                  month = val;
+                                },
                                 keyboardType: TextInputType.number,
                                 decoration: InputDecoration(
                                     hintText: "Month",
@@ -108,6 +128,9 @@ class _Step1State extends State<Step1> {
                             height: 40.0,
                             width: MediaQuery.of(context).size.width / 4,
                             child: TextField(
+                                onChanged: (val) {
+                                  year = val;
+                                },
                                 keyboardType: TextInputType.number,
                                 decoration: InputDecoration(
                                     hintText: "Year",
@@ -129,6 +152,9 @@ class _Step1State extends State<Step1> {
                       Container(
                           height: 80.0,
                           child: TextField(
+                              onChanged: (val) {
+                                aboutYou = val;
+                              },
                               keyboardType: TextInputType.multiline,
                               minLines: 5,
                               maxLines: 5,
@@ -140,8 +166,87 @@ class _Step1State extends State<Step1> {
                                           BorderRadius.circular(10.0))))),
                       SizedBox(height: 20.0),
                       CustomButton(
-                        onTap: () {
-                          Navigator.pushNamed(context, '/step2');
+                        onTap: () async {
+                          print('Your name: $fullName');
+                          if (day.length == 1) day = "0" + day;
+                          if (month.length == 1) month = "0" + month;
+                          dob =
+                              year + "-" + month + "-" + day + "T00:00:00.000Z";
+                          print('Date of birth: $dob');
+                          print('About you: $aboutYou');
+                          if (fullName.length == 0) {
+                            AwesomeDialog(
+                              context: context,
+                              dialogType: DialogType.WARNING,
+                              animType: AnimType.BOTTOMSLIDE,
+                              headerAnimationLoop: false,
+                              title: "Note",
+                              desc: "Please input your name !",
+                              btnCancelColor: Colors.red,
+                              btnCancelOnPress: () {},
+                              btnCancelText: 'Close',
+                            ).show();
+                          } else if (day.length == 0 ||
+                              day.length > 2 ||
+                              int.parse(month) < 1 ||
+                              int.parse(month) > 31) {
+                            AwesomeDialog(
+                              context: context,
+                              dialogType: DialogType.WARNING,
+                              animType: AnimType.BOTTOMSLIDE,
+                              headerAnimationLoop: false,
+                              title: "Note",
+                              desc: "Day of birth must from 1 to 31 !",
+                              btnCancelColor: Colors.red,
+                              btnCancelOnPress: () {},
+                              btnCancelText: 'Close',
+                            ).show();
+                          } else if (month.length == 0 ||
+                              month.length > 2 ||
+                              int.parse(month) < 1 ||
+                              int.parse(month) > 12) {
+                            AwesomeDialog(
+                              context: context,
+                              dialogType: DialogType.WARNING,
+                              animType: AnimType.BOTTOMSLIDE,
+                              headerAnimationLoop: false,
+                              title: "Note",
+                              desc: "Month of birth must from 1 to 12 !",
+                              btnCancelColor: Colors.red,
+                              btnCancelOnPress: () {},
+                              btnCancelText: 'Close',
+                            ).show();
+                          } else if (year.length != 4 ||
+                              int.parse(year) < 1900 ||
+                              int.parse(year) > 2021) {
+                            AwesomeDialog(
+                              context: context,
+                              dialogType: DialogType.WARNING,
+                              animType: AnimType.BOTTOMSLIDE,
+                              headerAnimationLoop: false,
+                              title: "Note",
+                              desc: "Year of birth must from 1900 to 2021 !",
+                              btnCancelColor: Colors.red,
+                              btnCancelOnPress: () {},
+                              btnCancelText: 'Close',
+                            ).show();
+                          } else {
+                            SharedPreferences prefs =
+                                await SharedPreferences.getInstance();
+                            String token = prefs.getString('token') ?? "*";
+                            List<UserHobby> lUserHoppy =
+                                await getHoppy(token: token);
+                            await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Step2(
+                                          fullName: fullName,
+                                          aboutYou: aboutYou,
+                                          dob: dob,
+                                          listHoppy: lUserHoppy,
+                                          token: token,
+                                        )));
+                          }
                         },
                         str: 'Next',
                         backgroundColor: Colors.grey,
