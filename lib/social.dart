@@ -5,10 +5,19 @@ import 'package:phinder/common.dart';
 import 'package:phinder/exercise.dart';
 import 'package:phinder/explore.dart';
 import 'package:phinder/news.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class Social extends StatefulWidget {
+  const Social({
+    Key? key,
+    required this.token,
+    this.client,
+    this.channel,
+  }) : super(key: key);
+
   final String token;
-  const Social({required this.token, Key? key}) : super(key: key);
+  final StreamChatClient client;
+  final Channel channel;
 
   @override
   _SocialState createState() => _SocialState();
@@ -29,7 +38,7 @@ class _SocialState extends State<Social> {
                 token: widget.token,
               ),
               ExerciseScreen(),
-              ChatScreen(),
+              ChatScreen(client: widget.client, channel: widget.channel),
               NewsPage(),
             ],
           ),
