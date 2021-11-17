@@ -32,14 +32,9 @@ void main() async {
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidHV0b3JpYWwtZmx1dHRlciJ9.S-MJpoSwDiqyXpUURgO5wVqJ4vKlIVFLSEyrFYCOE1c',
   );
 
-  final channel = client.channel('messaging', id: 'flutterdevs');
-
-  await channel.watch();
-
   runApp(
     MyApp(
       client: client,
-      channel: channel,
     ),
   );
 }
@@ -48,11 +43,9 @@ class MyApp extends StatelessWidget {
   const MyApp({
     Key? key,
     required this.client,
-    required this.channel,
   }) : super(key: key);
 
   final StreamChatClient client;
-  final Channel channel;
 
   @override
   Widget build(BuildContext context) {
@@ -66,11 +59,12 @@ class MyApp extends StatelessWidget {
         '/common': (context) => Common(
               token: '-',
             ),
-        '/signIn': (context) => SignIn(),
+        '/signIn': (context) => SignIn(client: client),
         '/forgot': (context) => Forgot(),
-        '/chat': (context) => ChatScreen(client: client, channel: channel),
+        '/chat': (context) => ChatScreen(client: client),
         '/social': (context) => Social(
               token: '-',
+              client: client,
             ),
         '/exercise': (context) => ExerciseScreen(),
         '/step1': (context) => Step1(),
@@ -83,7 +77,7 @@ class MyApp extends StatelessWidget {
         //     ),
         // '/step3': (context) => Step3(
         //     fullName: '-', aboutYou: '-', dob: '-', hobbies: [], token: '-'),
-        '/finish': (context) => Finish(),
+        '/finish': (context) => Finish(client: client),
         // '/explore': (context) => Explore(userInfo: UserInfo,),
         // '/detail': (context) => Detail(),
         '/match': (context) => Match(),

@@ -11,13 +11,11 @@ class Social extends StatefulWidget {
   const Social({
     Key? key,
     required this.token,
-    this.client,
-    this.channel,
+    required this.client,
   }) : super(key: key);
 
   final String token;
   final StreamChatClient client;
-  final Channel channel;
 
   @override
   _SocialState createState() => _SocialState();
@@ -38,7 +36,7 @@ class _SocialState extends State<Social> {
                 token: widget.token,
               ),
               ExerciseScreen(),
-              ChatScreen(client: widget.client, channel: widget.channel),
+              ChatScreen(client: widget.client),
               NewsPage(),
             ],
           ),

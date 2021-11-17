@@ -5,11 +5,18 @@ import 'package:phinder/api.dart';
 import 'package:phinder/main.dart';
 import 'package:phinder/social.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart' as StreamClient;
 
 //! Join Us page
 //!----------------------------------------------
 class SignIn extends StatefulWidget {
-  const SignIn({Key? key}) : super(key: key);
+  const SignIn({
+    Key? key,
+    required this.client,
+  }) : super(key: key);
+
+  final StreamClient.StreamChatClient client;
+
   @override
   _SignInState createState() => _SignInState();
 }
@@ -164,8 +171,8 @@ class _SignInState extends State<SignIn> {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) => Social(
-                                                token: token,
-                                              )));
+                                              token: token,
+                                              client: widget.client)));
                                   // Navigator.pushNamed(context, '/social');
                                 }
                               } else {
