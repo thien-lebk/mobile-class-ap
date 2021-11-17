@@ -4,6 +4,7 @@ import 'package:phinder/chat.dart';
 import 'package:phinder/common.dart';
 import 'package:phinder/exercise.dart';
 import 'package:phinder/explore.dart';
+import 'package:phinder/news.dart';
 
 class Social extends StatefulWidget {
   final String token;
@@ -18,7 +19,7 @@ class _SocialState extends State<Social> {
   Widget build(BuildContext context) {
     return DefaultTabController(
       initialIndex: 1,
-      length: 3,
+      length: 4,
       child: SafeArea(
         child: Scaffold(
           body: TabBarView(
@@ -29,6 +30,7 @@ class _SocialState extends State<Social> {
               ),
               ExerciseScreen(),
               ChatScreen(),
+              NewsPage(),
             ],
           ),
           bottomNavigationBar: TabBar(
@@ -38,6 +40,7 @@ class _SocialState extends State<Social> {
               Tab(child: Text('Explore')),
               Tab(child: Text('Exercise')),
               Tab(child: Text('Chat')),
+              Tab(child: Text('Video')),
             ],
           ),
         ),
