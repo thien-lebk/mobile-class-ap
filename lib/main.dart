@@ -5,6 +5,7 @@ import 'package:phinder/detail.dart';
 import 'package:phinder/exercise.dart';
 import 'package:phinder/explore.dart';
 import 'package:phinder/finish.dart';
+import 'package:phinder/forgot.dart';
 import 'package:phinder/joinus.dart';
 import 'package:phinder/signin.dart';
 import 'package:phinder/social.dart';
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
         '/joinUs': (context) => JoinUs(),
         '/common': (context) => Common(),
         '/signIn': (context) => SignIn(),
+        '/forgot': (context) => Forgot(),
         '/social': (context) => Social(),
         '/chat': (context) => ChatScreen(),
         '/exercise': (context) => ExerciseScreen(),

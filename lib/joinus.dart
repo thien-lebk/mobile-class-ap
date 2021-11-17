@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:phinder/api.dart';
 import 'package:phinder/main.dart';
 
 //! Join Us page
@@ -120,7 +121,8 @@ class _JoinUsState extends State<JoinUs> {
                                                 BorderRadius.circular(32.0))))),
                             SizedBox(height: 20.0),
                             CustomButton(
-                              onTap: () {
+                              onTap: () async {
+                                await registerAccount();
                                 Navigator.pushNamed(context, '/step1');
                               },
                               str: 'Join Us',

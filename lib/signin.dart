@@ -115,7 +115,9 @@ class _SignInState extends State<SignIn> {
                               SharedPreferences prefs =
                                   await SharedPreferences.getInstance();
                               String t = prefs.getString('token') ?? "*";
-                              await getUser(token: t);
+                              //! TODO: DELETE AFTER TEST
+                              // await getUser(token: t);
+                              await getUserList(token: t);
                               Navigator.pushNamed(context, '/social');
                             },
                             str: 'Sign In',
@@ -124,6 +126,7 @@ class _SignInState extends State<SignIn> {
                             textColor: Colors.white,
                             width: double.infinity,
                           ),
+                          SizedBox(height: 18.0),
                           GestureDetector(
                               onTap: () {
                                 Navigator.popAndPushNamed(context, '/joinUs');
@@ -132,7 +135,19 @@ class _SignInState extends State<SignIn> {
                                   child: Text("Create a new account",
                                       style: GoogleFonts.poppins(
                                           color: Colors.blue,
-                                          textStyle: TextStyle(fontSize: 14)))))
+                                          textStyle:
+                                              TextStyle(fontSize: 14))))),
+                          SizedBox(height: 18.0),
+                          GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, '/forgot');
+                              },
+                              child: Center(
+                                  child: Text("Forgot password ?",
+                                      style: GoogleFonts.poppins(
+                                          color: Colors.blue,
+                                          textStyle:
+                                              TextStyle(fontSize: 14))))),
                         ]))))));
   }
 }
