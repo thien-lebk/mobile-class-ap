@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:phinder/api.dart';
@@ -31,7 +32,13 @@ class _ForgotState extends State<Forgot> {
                               child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                            Text('', textAlign: TextAlign.center),
+                            Text('Get your password back !',
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.poppins(
+                                    textStyle: TextStyle(
+                                        color: Colors.black87,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500))),
                           ]))),
                       Image.asset('assets/screens/join.png',
                           fit: BoxFit.fitHeight),
@@ -71,8 +78,63 @@ class _ForgotState extends State<Forgot> {
                             onTap: () async {
                               print('email: ' + email);
                               print('password: ' + password);
-                              int res = await postResetPassword(email: email);
-                              Navigator.pop(context);
+                              if (email.length < 5) {
+                                AwesomeDialog(
+                                  context: context,
+                                  dialogType: DialogType.WARNING,
+                                  animType: AnimType.BOTTOMSLIDE,
+                                  headerAnimationLoop: false,
+                                  title: "Note",
+                                  desc: "Wrong email, check again !",
+                                  btnCancelColor: Colors.red,
+                                  btnCancelOnPress: () {},
+                                  btnCancelText: 'Close',
+                                ).show();
+                              } else {
+                                int resCode =
+                                    await postResetPassword(email: email);
+                                if (resCode == 404) {
+                                  AwesomeDialog(
+                                    context: context,
+                                    dialogType: DialogType.WARNING,
+                                    animType: AnimType.BOTTOMSLIDE,
+                                    headerAnimationLoop: false,
+                                    title: "Note",
+                                    desc: "Wrong email !",
+                                    btnCancelColor: Colors.red,
+                                    btnCancelOnPress: () {},
+                                    btnCancelText: 'Close',
+                                  ).show();
+                                } else if (resCode == 201) {
+                                  AwesomeDialog(
+                                    context: context,
+                                    dialogType: DialogType.WARNING,
+                                    animType: AnimType.BOTTOMSLIDE,
+                                    headerAnimationLoop: false,
+                                    title: "Succeed",
+                                    desc: "Password sent to your email !",
+                                    btnOkColor: Colors.green,
+                                    btnOkOnPress: () {
+                                      Navigator.pop(context);
+                                    },
+                                    btnOkText: 'Close',
+                                  ).show();
+                                } else {
+                                  AwesomeDialog(
+                                    context: context,
+                                    dialogType: DialogType.WARNING,
+                                    animType: AnimType.BOTTOMSLIDE,
+                                    headerAnimationLoop: false,
+                                    title: "Note",
+                                    desc: "Password sent !!!",
+                                    btnCancelColor: Colors.red,
+                                    btnCancelOnPress: () {
+                                      Navigator.pop(context);
+                                    },
+                                    btnCancelText: 'Close',
+                                  ).show();
+                                }
+                              }
                             },
                             str: 'Send password',
                             backgroundColor: Colors.grey,

@@ -1,17 +1,62 @@
+import 'dart:io';
+
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:phinder/api.dart';
 import 'package:phinder/main.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:file_picker/file_picker.dart';
 
 class Step3 extends StatefulWidget {
-  const Step3({Key? key}) : super(key: key);
+  final String fullName;
+  final String aboutYou;
+  final String dob;
+  final List<String> hobbies;
+  final String token;
+  const Step3(
+      {required this.fullName,
+      required this.aboutYou,
+      required this.dob,
+      required this.hobbies,
+      required this.token,
+      Key? key})
+      : super(key: key);
 
   @override
   _Step3State createState() => _Step3State();
 }
 
 class _Step3State extends State<Step3> {
-  bool isVisible = false;
-  List<bool> isSelected = [false, false, false, false, false];
+  bool _fileSelected = false;
+  late File _localFile;
+
+  Future _browseImage() async {
+    FilePickerResult? _browsedImage = await FilePicker.platform.pickFiles(
+        // type: FileType.custom, allowedExtensions: ['jpg', 'png', 'bmp']);
+        type: FileType.image);
+    if (_browsedImage != null) {
+      setState(() {
+        _fileSelected = true;
+
+        _localFile = File(_browsedImage.files.single.path!);
+      });
+    }
+  }
+
+  Future _captureImage() async {
+    final _pickedImage = await ImagePicker()
+        .pickImage(source: ImageSource.camera, imageQuality: 25);
+    if (_pickedImage != null) {
+      setState(() {
+        _fileSelected = true;
+        _localFile = File(_pickedImage.path);
+        print('size: ');
+        print(_localFile.lengthSync());
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -51,79 +96,98 @@ class _Step3State extends State<Step3> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      Expanded(
-                          child: InkWell(
-                              onTap: () {},
-                              child: Container(
-                                  decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.grey),
-                                      borderRadius:
-                                          BorderRadius.circular(20.0)),
-                                  child: Icon(
-                                    Icons.cloud_upload_outlined,
-                                    size: 40,
-                                    color: Colors.blueGrey,
-                                  )))),
-                      SizedBox(width: 20.0),
-                      Expanded(
-                          child: InkWell(
-                              onTap: () {},
-                              child: Container(
-                                  decoration: BoxDecoration(
-                                      border: Border.all(color: Colors.grey),
-                                      borderRadius:
-                                          BorderRadius.circular(20.0)),
-                                  child: Icon(
-                                    Icons.photo_camera_outlined,
-                                    size: 40,
-                                    color: Colors.blueGrey,
-                                  )))),
-                    ],
+                  Container(
+                    height: 50.0,
+                    child: Row(
+                      children: [
+                        Expanded(
+                            child: InkWell(
+                                onTap: () {
+                                  _browseImage();
+                                },
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.grey),
+                                        borderRadius:
+                                            BorderRadius.circular(20.0)),
+                                    child: Icon(
+                                      Icons.cloud_upload_outlined,
+                                      size: 40,
+                                      color: Colors.blueGrey,
+                                    )))),
+                        SizedBox(width: 20.0),
+                        Expanded(
+                            child: InkWell(
+                                onTap: () async {
+                                  await _captureImage();
+                                },
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.grey),
+                                        borderRadius:
+                                            BorderRadius.circular(20.0)),
+                                    child: Icon(
+                                      Icons.photo_camera_outlined,
+                                      size: 40,
+                                      color: Colors.blueGrey,
+                                    )))),
+                      ],
+                    ),
                   ),
-                  Row(
-                    children: [
-                      Column(
-                        children: [
-                          SizedBox(
-                            width: 100.0,
-                            child: Image.network(
-                              'https://i1-dulich.vnecdn.net/2021/11/08/69778654-2673094529369257-2099-9934-2443-1636376832.jpg?w=0&h=0&q=100&dpr=1&fit=crop&s=dQQHhQ8ObWZLh7tSrQCfSA',
-                            ),
-                          ),
-                          SizedBox(height: 5.0),
-                          SizedBox(
-                            width: 100.0,
-                            child: Image.network(
-                              'https://i1-dulich.vnecdn.net/2021/11/08/69778654-2673094529369257-2099-9934-2443-1636376832.jpg?w=0&h=0&q=100&dpr=1&fit=crop&s=dQQHhQ8ObWZLh7tSrQCfSA',
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(width: 5.0),
-                      Column(
-                        children: [
-                          SizedBox(
-                            width: 100.0,
-                            child: Image.network(
-                              'https://i1-dulich.vnecdn.net/2021/11/08/69778654-2673094529369257-2099-9934-2443-1636376832.jpg?w=0&h=0&q=100&dpr=1&fit=crop&s=dQQHhQ8ObWZLh7tSrQCfSA',
-                            ),
-                          ),
-                          SizedBox(height: 5.0),
-                          SizedBox(
-                            width: 100.0,
-                            child: Image.network(
-                              'https://i1-dulich.vnecdn.net/2021/11/08/69778654-2673094529369257-2099-9934-2443-1636376832.jpg?w=0&h=0&q=100&dpr=1&fit=crop&s=dQQHhQ8ObWZLh7tSrQCfSA',
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                  SizedBox(height: 10.0),
+                  Expanded(
+                      child: Container(
+                    width: double.infinity,
+                    child: Center(
+                        child: !_fileSelected
+                            ? Text('Chose an image to display!')
+                            : Image.file(_localFile)),
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                            color: !_fileSelected
+                                ? Colors.grey
+                                : Colors.transparent)),
+                  )),
                   CustomButton(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/finish');
+                    onTap: () async {
+                      if (_fileSelected == false) {
+                        AwesomeDialog(
+                          context: context,
+                          dialogType: DialogType.WARNING,
+                          animType: AnimType.BOTTOMSLIDE,
+                          headerAnimationLoop: false,
+                          title: "Note",
+                          desc: "Please chose an image !",
+                          btnCancelColor: Colors.red,
+                          btnCancelOnPress: () {},
+                          btnCancelText: 'Close',
+                        ).show();
+                      } else {
+                        int resCode = await updateUser(
+                            token: widget.token,
+                            fullName: widget.fullName,
+                            aboutYou: widget.aboutYou,
+                            dob: widget.dob,
+                            hobbies: widget.hobbies);
+                        print(resCode);
+                        if (resCode != 200) {
+                          AwesomeDialog(
+                            context: context,
+                            dialogType: DialogType.WARNING,
+                            animType: AnimType.BOTTOMSLIDE,
+                            headerAnimationLoop: false,
+                            title: "Note",
+                            desc: "Update error !",
+                            btnCancelColor: Colors.red,
+                            btnCancelOnPress: () {},
+                            btnCancelText: 'Close',
+                          ).show();
+                        }
+                        await uploadImage(
+                            toUploadFile: _localFile, token: widget.token);
+
+                        Navigator.pushNamed(context, '/finish');
+                      }
                     },
                     str: 'Done',
                     backgroundColor: Colors.grey,

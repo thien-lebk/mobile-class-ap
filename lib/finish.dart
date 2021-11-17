@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:phinder/api.dart';
 import 'package:phinder/main.dart';
+import 'package:phinder/social.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Finish extends StatefulWidget {
   const Finish({Key? key}) : super(key: key);
@@ -10,14 +13,11 @@ class Finish extends StatefulWidget {
 }
 
 class _FinishState extends State<Finish> {
-  bool isVisible = false;
-  List<bool> isSelected = [false, false, false, false, false];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
           body: Container(
-        // child: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Column(
@@ -43,12 +43,23 @@ class _FinishState extends State<Finish> {
                 ],
               ))),
               CustomButton(
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.pop(context);
-                  Navigator.pop(context);
-                  Navigator.pop(context);
-                  Navigator.popAndPushNamed(context, '/explore');
+                onTap: () async {
+                  // Navigator.pop(context);
+                  // Navigator.pop(context);
+                  // Navigator.pop(context);
+                  // Navigator.pop(context);
+                  SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  String token = prefs.getString('token') ?? "*";
+                  // List<UserInfo> listUser = await getUserList(token: token);
+
+                  await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Social(
+                                token: token,
+                              )));
+                  // Navigator.popAndPushNamed(context, '/social');
                 },
                 str: 'Explore Phinder',
                 backgroundColor: Colors.black87,

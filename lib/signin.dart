@@ -1,7 +1,9 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:phinder/api.dart';
 import 'package:phinder/main.dart';
+import 'package:phinder/social.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 //! Join Us page
@@ -32,7 +34,13 @@ class _SignInState extends State<SignIn> {
                               child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                            Text('', textAlign: TextAlign.center),
+                            Text('Welcome to Phinder!',
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.poppins(
+                                    textStyle: TextStyle(
+                                        color: Colors.black87,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500))),
                           ]))),
                       Image.asset('assets/screens/join.png',
                           fit: BoxFit.fitHeight),
@@ -104,21 +112,75 @@ class _SignInState extends State<SignIn> {
                               print('password: ' + password);
                               String token = await signIn(
                                   email: email, password: password);
-                              if (token.length > 1) {
+                              if (token == '-' ||
+                                  email.length < 5 ||
+                                  password.length < 5) {
+                                AwesomeDialog(
+                                  context: context,
+                                  dialogType: DialogType.WARNING,
+                                  animType: AnimType.BOTTOMSLIDE,
+                                  headerAnimationLoop: false,
+                                  title: "Note",
+                                  desc: "Wrong email or password !",
+                                  btnCancelColor: Colors.red,
+                                  btnCancelOnPress: () {},
+                                  btnCancelText: 'Close',
+                                ).show();
+                              } else if (token == '+') {
+                                AwesomeDialog(
+                                  context: context,
+                                  dialogType: DialogType.WARNING,
+                                  animType: AnimType.BOTTOMSLIDE,
+                                  headerAnimationLoop: false,
+                                  title: "Note",
+                                  desc: "Network error !",
+                                  btnCancelColor: Colors.red,
+                                  btnCancelOnPress: () {},
+                                  btnCancelText: 'Close',
+                                ).show();
+                              } else if (token.length > 1) {
                                 SharedPreferences prefs =
                                     await SharedPreferences.getInstance();
                                 prefs.setString('token', token);
-                              }
-                              print('token: $token');
+                                print('token: $token');
+                                User thisUser = await getUser(token: token);
+                                print(thisUser.fullName);
+                                if (thisUser.isFirstLogin) {
+                                  Navigator.pushNamed(context, '/step1');
+                                }
 
-                              print('***Test API***');
-                              SharedPreferences prefs =
-                                  await SharedPreferences.getInstance();
-                              String t = prefs.getString('token') ?? "*";
-                              //! TODO: DELETE AFTER TEST
-                              // await getUser(token: t);
-                              await getUserList(token: t);
-                              Navigator.pushNamed(context, '/social');
+                                // print('***Test API***');
+                                // SharedPreferences prefs =
+                                //     await SharedPreferences.getInstance();
+                                // String t = prefs.getString('token') ?? "*";
+                                // //! TODO: DELETE AFTER TEST
+                                // // await getUser(token: t);
+                                // await getUserList(token: t);
+                                // Navigator.popAndPushNamed(context, '/social');
+                                else {
+                                  // List<UserInfo> listUser =
+                                  //     await getUserList(token: token);
+                                  await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => Social(
+                                                token: token,
+                                              )));
+                                  // Navigator.pushNamed(context, '/social');
+                                }
+                              } else {
+                                AwesomeDialog(
+                                  context: context,
+                                  dialogType: DialogType.WARNING,
+                                  animType: AnimType.BOTTOMSLIDE,
+                                  headerAnimationLoop: false,
+                                  title: "Note",
+                                  desc: "Login error !",
+                                  btnCancelColor: Colors.red,
+                                  btnCancelOnPress: () {},
+                                  btnCancelText: 'Close',
+                                ).show();
+                              }
                             },
                             str: 'Sign In',
                             backgroundColor: Colors.grey,
