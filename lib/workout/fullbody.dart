@@ -92,6 +92,7 @@ class _FullBodyWorkoutState extends State<FullBodyWorkout> {
                   onTap: () {
                     print('Completed!');
                     // Navigator
+                    Navigator.pushNamed(context, '/post');
                   },
                   str: 'COMPLETE',
                   backgroundColor: Color.fromRGBO(248, 207, 97, 30),

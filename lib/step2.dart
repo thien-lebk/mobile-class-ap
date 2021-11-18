@@ -5,7 +5,7 @@ import 'package:phinder/main.dart';
 import 'package:phinder/step3.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-List<String> chosenHoppy = [];
+List<int> chosenHoppy = [];
 
 class Step2 extends StatefulWidget {
   final String fullName;
@@ -38,20 +38,27 @@ class _Step2State extends State<Step2> {
     }
     List<Widget> lWidget = [];
     for (var i = 0; i < widget.listHoppy.length; i = i + 3) {
-      // print(widget.listHoppy[i].id);
-      // print(widget.listHoppy[i].name);
+      print(widget.listHoppy[i].id);
+      print(widget.listHoppy[i].name);
       // print(i % 2);
       if (i % 3 == 0) {
         lWidget.add(Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Toggle(txt: widget.listHoppy[i].name),
+            Toggle(
+                txt: widget.listHoppy[i].name,
+                hoppyID: int.parse(widget.listHoppy[i].id)),
             (i + 1) < widget.listHoppy.length
-                ? Toggle(txt: widget.listHoppy[i + 1].name)
+                ? Toggle(
+                    txt: widget.listHoppy[i + 1].name,
+                    hoppyID: int.parse(widget.listHoppy[i + 1].id),
+                  )
                 : Container(),
             (i + 2) < widget.listHoppy.length
-                ? Toggle(txt: widget.listHoppy[i + 2].name)
+                ? Toggle(
+                    txt: widget.listHoppy[i + 2].name,
+                    hoppyID: int.parse(widget.listHoppy[i + 2].id))
                 : Container(),
           ],
         ));
@@ -132,8 +139,9 @@ class _Step2State extends State<Step2> {
 }
 
 class Toggle extends StatefulWidget {
-  const Toggle({required this.txt});
+  const Toggle({required this.txt, required this.hoppyID});
   final String txt;
+  final int hoppyID;
   @override
   _ToggleState createState() => _ToggleState();
 }
@@ -145,9 +153,9 @@ class _ToggleState extends State<Toggle> {
     return InkWell(
       onTap: () {
         if (_isSelected)
-          chosenHoppy.remove(widget.txt);
+          chosenHoppy.remove(widget.hoppyID);
         else
-          chosenHoppy.add(widget.txt);
+          chosenHoppy.add(widget.hoppyID);
         setState(() {
           _isSelected = !_isSelected;
         });

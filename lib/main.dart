@@ -20,6 +20,7 @@ import 'package:phinder/workout/abs.dart';
 import 'package:phinder/workout/fullbody.dart';
 import 'package:phinder/workout/butt.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
+import 'package:phinder/post.dart';
 
 void main() async {
   final client = StreamChatClient(
@@ -86,6 +87,7 @@ class MyApp extends StatelessWidget {
         '/leg': (context) => LegWorkout(),
         '/fullbody': (context) => FullBodyWorkout(),
         '/butt': (context) => ButtWorkout(),
+        '/post': (context) => Post(),
       },
     );
   }
