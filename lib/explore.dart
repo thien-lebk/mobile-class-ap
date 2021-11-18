@@ -15,6 +15,9 @@ class _ExploreState extends State<Explore> {
   List<bool> isSelected = [false, false, false, false, false];
   @override
   Widget build(BuildContext context) {
+    print(widget.userInfo.images);
+    print(widget.userInfo.fullName);
+
     return SafeArea(
       child: Scaffold(
           body: Container(
@@ -22,8 +25,9 @@ class _ExploreState extends State<Explore> {
           image: DecorationImage(
             colorFilter: ColorFilter.mode(
                 Color.fromRGBO(38, 38, 38, 70), BlendMode.srcOver),
-            image: NetworkImage(
-                "https://i1-dulich.vnecdn.net/2021/11/04/laothan11-3308-1636038257.jpg?w=1020&h=0&q=100&dpr=1&fit=crop&s=ojGL1Ji3E0YKu-WJ-jf7Fw"),
+            image: NetworkImage(widget.userInfo.images.length == 0
+                ? "https://i1-dulich.vnecdn.net/2021/11/04/laothan11-3308-1636038257.jpg?w=1020&h=0&q=100&dpr=1&fit=crop&s=ojGL1Ji3E0YKu-WJ-jf7Fw"
+                : widget.userInfo.images[0].url),
             fit: BoxFit.cover,
           ),
         ),

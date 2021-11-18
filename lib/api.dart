@@ -169,11 +169,14 @@ class UserInfo {
 
     List<UserImage> lUserImage = [];
     try {
-      for (var index in json['hobbies']) {
+      for (var index in json['images']) {
+        print('image *** $index');
+        print(UserImage.fromJson(index));
         lUserImage.add(UserImage.fromJson(index));
       }
     } catch (e) {}
-
+    print('333');
+    print(lUserImage);
     return UserInfo(
         json['id'] as String,
         json['fullName'] as String,
@@ -209,6 +212,7 @@ class UserImage {
     this.id,
     this.type,
     this.content,
+    this.url,
     this.isDeleted,
     this.createdAt,
     this.updatedAt,
@@ -217,15 +221,19 @@ class UserImage {
   int id;
   String type;
   String content;
+  String url;
   bool isDeleted;
   String createdAt;
   String updatedAt;
 
   factory UserImage.fromJson(dynamic json) {
+    print('**** picture');
+    print(json);
     return UserImage(
       json['id'] as int,
       json['type'] as String,
       json['content'] as String,
+      json['url'] as String,
       json['isDeleted'] as bool,
       json['createdAt'] as String,
       json['updatedAt'] as String,
@@ -242,7 +250,8 @@ Future<List<UserInfo>> getUserList({required String token}) async {
     print(uri);
     final response = await http
         .get(uri, headers: {HttpHeaders.authorizationHeader: "Bearer $token"});
-    // print(response.body);
+    print('*-*');
+    print(response.body);
     // print(response.statusCode);
     if (response.statusCode != 200) {
       print('Unauthorize request');
@@ -308,18 +317,24 @@ Future<int> updateUser({
   required String aboutYou,
   required String dob,
   String phoneNumber = "default",
-  required List<String> hobbies,
+  required List<int> hobbies,
 }) async {
   print('Call API updateAccount');
   String url = API_LINK + 'user';
   var uri = Uri.parse(url);
   print(uri);
+  List<Map<String, int>> listHoppies = [];
+  for (var i = 0; i < hobbies.length; i++) {
+    listHoppies.add({"id": hobbies[i]});
+  }
+  print('****');
+  print(listHoppies);
   print(json.encode({
     "fullName": fullName,
     "aboutYou": aboutYou,
     "dob": dob,
     "phoneNumber": phoneNumber,
-    "hobbies": hobbies,
+    "hobbies": listHoppies,
   }));
   try {
     final response = await http.put(uri,
