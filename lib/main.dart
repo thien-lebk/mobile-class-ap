@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:phinder/api.dart';
 import 'package:phinder/chat.dart';
 import 'package:phinder/common.dart';
 import 'package:phinder/detail.dart';
@@ -20,12 +19,34 @@ import 'package:phinder/workout/leg.dart';
 import 'package:phinder/workout/abs.dart';
 import 'package:phinder/workout/fullbody.dart';
 import 'package:phinder/workout/butt.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  final client = StreamChatClient(
+    'b67pax5b2wdq',
+    logLevel: Level.INFO,
+  );
+
+  await client.connectUser(
+    User(id: 'tutorial-flutter'),
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoidHV0b3JpYWwtZmx1dHRlciJ9.S-MJpoSwDiqyXpUURgO5wVqJ4vKlIVFLSEyrFYCOE1c',
+  );
+
+  runApp(
+    MyApp(
+      client: client,
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({
+    Key? key,
+    required this.client,
+  }) : super(key: key);
+
+  final StreamChatClient client;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -38,12 +59,13 @@ class MyApp extends StatelessWidget {
         '/common': (context) => Common(
               token: '-',
             ),
-        '/signIn': (context) => SignIn(),
+        '/signIn': (context) => SignIn(client: client),
         '/forgot': (context) => Forgot(),
+        '/chat': (context) => ChatScreen(client: client),
         '/social': (context) => Social(
               token: '-',
+              client: client,
             ),
-        '/chat': (context) => ChatScreen(),
         '/exercise': (context) => ExerciseScreen(),
         '/step1': (context) => Step1(),
         // '/step2': (context) => Step2(
@@ -55,7 +77,7 @@ class MyApp extends StatelessWidget {
         //     ),
         // '/step3': (context) => Step3(
         //     fullName: '-', aboutYou: '-', dob: '-', hobbies: [], token: '-'),
-        '/finish': (context) => Finish(),
+        '/finish': (context) => Finish(client: client),
         // '/explore': (context) => Explore(userInfo: UserInfo,),
         // '/detail': (context) => Detail(),
         '/match': (context) => Match(),

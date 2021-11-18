@@ -4,9 +4,15 @@ import 'package:phinder/api.dart';
 import 'package:phinder/main.dart';
 import 'package:phinder/social.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class Finish extends StatefulWidget {
-  const Finish({Key? key}) : super(key: key);
+  const Finish({
+    Key? key,
+    required this.client,
+  }) : super(key: key);
+
+  final StreamChatClient client;
 
   @override
   _FinishState createState() => _FinishState();
@@ -56,9 +62,8 @@ class _FinishState extends State<Finish> {
                   await Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => Social(
-                                token: token,
-                              )));
+                          builder: (context) =>
+                              Social(token: token, client: widget.client)));
                   // Navigator.popAndPushNamed(context, '/social');
                 },
                 str: 'Explore Phinder',

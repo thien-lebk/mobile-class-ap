@@ -33,7 +33,7 @@ class _JoinUsState extends State<JoinUs> {
                               child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                            Text('Create your account',
+                            Text('',
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.poppins(
                                     textStyle: TextStyle(
@@ -176,7 +176,7 @@ class _JoinUsState extends State<JoinUs> {
                                     headerAnimationLoop: false,
                                     title: "Note",
                                     desc:
-                                        "Password need atleat 5 or more char !",
+                                        "Password need at least 5 or more characters!",
                                     btnCancelColor: Colors.red,
                                     btnCancelOnPress: () {},
                                     btnCancelText: 'Close',
@@ -207,7 +207,7 @@ class _JoinUsState extends State<JoinUs> {
                                       headerAnimationLoop: false,
                                       title: "Succeed",
                                       desc:
-                                          "Account created, now you can log on with this account !",
+                                          "Now you can Log In with this account!",
                                       btnOkColor: Colors.green,
                                       btnOkOnPress: () {
                                         Navigator.popAndPushNamed(
@@ -242,7 +242,7 @@ class _JoinUsState extends State<JoinUs> {
                                 }
                               },
                               str: 'Join Us',
-                              backgroundColor: Colors.grey,
+                              backgroundColor: Colors.black87,
                               borderColor: Colors.transparent,
                               textColor: Colors.white,
                               width: double.infinity,
