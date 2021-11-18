@@ -117,7 +117,7 @@ class _Step2State extends State<Step2> {
                       // Navigator.pushNamed(context, '/step3');
                     },
                     str: 'Next',
-                    backgroundColor: Colors.grey,
+                    backgroundColor: Colors.black87,
                     borderColor: Colors.transparent,
                     textColor: Colors.white,
                     width: double.infinity,

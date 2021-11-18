@@ -249,7 +249,7 @@ class _Step1State extends State<Step1> {
                           }
                         },
                         str: 'Next',
-                        backgroundColor: Colors.grey,
+                        backgroundColor: Colors.black87,
                         borderColor: Colors.transparent,
                         textColor: Colors.white,
                         width: double.infinity,

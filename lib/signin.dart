@@ -41,7 +41,7 @@ class _SignInState extends State<SignIn> {
                               child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                            Text('Welcome to Phinder!',
+                            Text('',
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.poppins(
                                     textStyle: TextStyle(
@@ -190,7 +190,7 @@ class _SignInState extends State<SignIn> {
                               }
                             },
                             str: 'Sign In',
-                            backgroundColor: Colors.grey,
+                            backgroundColor: Colors.black87,
                             borderColor: Colors.transparent,
                             textColor: Colors.white,
                             width: double.infinity,
