@@ -144,6 +144,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                                         ],
                                       ),
                                     ),
+                                    SizedBox(width: 4.0),
                                     InkWell(
                                         onTap: () {
                                           print('Tap to full body workout');
@@ -185,6 +186,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                                             )
                                           ],
                                         )),
+                                    SizedBox(width: 4.0),
                                     InkWell(
                                         onTap: () {
                                           print('Tap to arm workout');
@@ -224,6 +226,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                                             )
                                           ],
                                         )),
+                                    SizedBox(width: 4.0),
                                     InkWell(
                                         onTap: () {
                                           print('Tap to butt workout');
@@ -264,6 +267,7 @@ class _ExerciseScreenState extends State<ExerciseScreen> {
                                             )
                                           ],
                                         )),
+                                    SizedBox(width: 4.0),
                                   ],
                                 ))))
                   ],

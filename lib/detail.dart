@@ -54,7 +54,7 @@ class _DetailState extends State<Detail> {
       child: Scaffold(
           appBar: AppBar(
             leading: Container(),
-            title: Text('Quỳnh Anh\'s journal'),
+            title: Text('Friend\'s Journal'),
           ),
           body: SingleChildScrollView(
             child: Padding(
@@ -71,10 +71,10 @@ class _DetailState extends State<Detail> {
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
-                  SizedBox(height: 5.0),
+                  SizedBox(height: 12.0),
                   Text(
                       'Tui đã hoàn thành bài tập hôm nay và tui cảm thấy tự hào :)'),
-                  SizedBox(height: 5.0),
+                  SizedBox(height: 12.0),
                   Row(
                     children: [
                       Expanded(
@@ -82,15 +82,88 @@ class _DetailState extends State<Detail> {
                           'https://i1-dulich.vnecdn.net/2021/11/11/3-1636626306.jpg?w=1200&h=0&q=100&dpr=2&fit=crop&s=d-QHSduvv6eASZ-alMmhdQ',
                         ),
                       ),
-                      SizedBox(width: 1.0),
+                      // SizedBox(width: 1.0),
+                      // Expanded(
+                      //     child: Image.network(
+                      //   'https://i1-dulich.vnecdn.net/2021/11/11/1-1636626304.jpg?w=1200&h=0&q=100&dpr=2&fit=crop&s=wnv1riCfvctSV6bQGdcN_Q',
+                      // )),
+                      // SizedBox(width: 1.0),
+                      // Expanded(
+                      //   child: Image.network(
+                      //     'https://i1-dulich.vnecdn.net/2021/11/07/C3-9584-1636298834-4676-1636299490.jpg?w=300&h=180&q=100&dpr=1&fit=crop&s=c0InP1-zplvo_ohd0S1_kQ',
+                      //   ),
+                      // ),
+                    ],
+                  ),
+                  Divider(
+                    color: Colors.blueGrey,
+                  ),
+                  Text('10/02/2021',
+                      style: TextStyle(fontSize: 12, color: Colors.grey)),
+                  SizedBox(height: 5.0),
+                  Center(
+                    child: Text(
+                      'Running',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  SizedBox(height: 5.0),
+                  Text(
+                      'Tui đã hoàn thành bài tập hôm nay và tui cảm thấy tự hào :)'),
+                  SizedBox(height: 12.0),
+                  Row(
+                    children: [
+                      // Expanded(
+                      //   child: Image.network(
+                      //     'https://i1-dulich.vnecdn.net/2021/11/11/3-1636626306.jpg?w=1200&h=0&q=100&dpr=2&fit=crop&s=d-QHSduvv6eASZ-alMmhdQ',
+                      //   ),
+                      // ),
+                      // SizedBox(width: 1.0),
                       Expanded(
                           child: Image.network(
                         'https://i1-dulich.vnecdn.net/2021/11/11/1-1636626304.jpg?w=1200&h=0&q=100&dpr=2&fit=crop&s=wnv1riCfvctSV6bQGdcN_Q',
                       )),
-                      SizedBox(width: 1.0),
+                      // SizedBox(width: 1.0),
+                      // Expanded(
+                      //   child: Image.network(
+                      //     'https://i1-dulich.vnecdn.net/2021/11/07/C3-9584-1636298834-4676-1636299490.jpg?w=300&h=180&q=100&dpr=1&fit=crop&s=c0InP1-zplvo_ohd0S1_kQ',
+                      //   ),
+                      // ),
+                    ],
+                  ),
+                  Divider(
+                    color: Colors.blueGrey,
+                  ),
+                  Text('20/9/2021',
+                      style: TextStyle(fontSize: 12, color: Colors.grey)),
+                  SizedBox(height: 5.0),
+                  Center(
+                    child: Text(
+                      'Gym',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  SizedBox(height: 5.0),
+                  Text(
+                      'Tui đã hoàn thành bài tập hôm nay và tui cảm thấy tự hào :)'),
+                  SizedBox(height: 12.0),
+                  Row(
+                    children: [
+                      // Expanded(
+                      //   child: Image.network(
+                      //     'https://i1-dulich.vnecdn.net/2021/11/11/3-1636626306.jpg?w=1200&h=0&q=100&dpr=2&fit=crop&s=d-QHSduvv6eASZ-alMmhdQ',
+                      //   ),
+                      // ),
+                      // SizedBox(width: 1.0),
+                      // Expanded(
+                      //     child: Image.network(
+                      //   'https://i1-dulich.vnecdn.net/2021/11/11/1-1636626304.jpg?w=1200&h=0&q=100&dpr=2&fit=crop&s=wnv1riCfvctSV6bQGdcN_Q',
+                      // )),
+                      // SizedBox(width: 1.0),
                       Expanded(
                         child: Image.network(
                           'https://i1-dulich.vnecdn.net/2021/11/07/C3-9584-1636298834-4676-1636299490.jpg?w=300&h=180&q=100&dpr=1&fit=crop&s=c0InP1-zplvo_ohd0S1_kQ',
+                          fit: BoxFit.fill,
                         ),
                       ),
                     ],
@@ -98,108 +171,35 @@ class _DetailState extends State<Detail> {
                   Divider(
                     color: Colors.blueGrey,
                   ),
-                  Text('01/01/2021',
+                  Text('23/10/2021',
                       style: TextStyle(fontSize: 12, color: Colors.grey)),
                   SizedBox(height: 5.0),
                   Center(
                     child: Text(
-                      'HIIT Yoga',
+                      'Walking',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
                   SizedBox(height: 5.0),
                   Text(
                       'Tui đã hoàn thành bài tập hôm nay và tui cảm thấy tự hào :)'),
-                  SizedBox(height: 5.0),
+                  SizedBox(height: 12.0),
                   Row(
                     children: [
+                      // Expanded(
+                      //   child: Image.network(
+                      //     'https://i1-dulich.vnecdn.net/2021/11/11/3-1636626306.jpg?w=1200&h=0&q=100&dpr=2&fit=crop&s=d-QHSduvv6eASZ-alMmhdQ',
+                      //   ),
+                      // ),
+                      // SizedBox(width: 1.0),
+                      // Expanded(
+                      //     child: Image.network(
+                      //   'https://i1-dulich.vnecdn.net/2021/11/11/1-1636626304.jpg?w=1200&h=0&q=100&dpr=2&fit=crop&s=wnv1riCfvctSV6bQGdcN_Q',
+                      // )),
+                      // SizedBox(width: 1.0),
                       Expanded(
                         child: Image.network(
-                          'https://i1-dulich.vnecdn.net/2021/11/11/3-1636626306.jpg?w=1200&h=0&q=100&dpr=2&fit=crop&s=d-QHSduvv6eASZ-alMmhdQ',
-                        ),
-                      ),
-                      SizedBox(width: 1.0),
-                      Expanded(
-                          child: Image.network(
-                        'https://i1-dulich.vnecdn.net/2021/11/11/1-1636626304.jpg?w=1200&h=0&q=100&dpr=2&fit=crop&s=wnv1riCfvctSV6bQGdcN_Q',
-                      )),
-                      SizedBox(width: 1.0),
-                      Expanded(
-                        child: Image.network(
-                          'https://i1-dulich.vnecdn.net/2021/11/07/C3-9584-1636298834-4676-1636299490.jpg?w=300&h=180&q=100&dpr=1&fit=crop&s=c0InP1-zplvo_ohd0S1_kQ',
-                        ),
-                      ),
-                    ],
-                  ),
-                  Divider(
-                    color: Colors.blueGrey,
-                  ),
-                  Text('01/01/2021',
-                      style: TextStyle(fontSize: 12, color: Colors.grey)),
-                  SizedBox(height: 5.0),
-                  Center(
-                    child: Text(
-                      'HIIT Yoga',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  SizedBox(height: 5.0),
-                  Text(
-                      'Tui đã hoàn thành bài tập hôm nay và tui cảm thấy tự hào :)'),
-                  SizedBox(height: 5.0),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Image.network(
-                          'https://i1-dulich.vnecdn.net/2021/11/11/3-1636626306.jpg?w=1200&h=0&q=100&dpr=2&fit=crop&s=d-QHSduvv6eASZ-alMmhdQ',
-                        ),
-                      ),
-                      SizedBox(width: 1.0),
-                      Expanded(
-                          child: Image.network(
-                        'https://i1-dulich.vnecdn.net/2021/11/11/1-1636626304.jpg?w=1200&h=0&q=100&dpr=2&fit=crop&s=wnv1riCfvctSV6bQGdcN_Q',
-                      )),
-                      SizedBox(width: 1.0),
-                      Expanded(
-                        child: Image.network(
-                          'https://i1-dulich.vnecdn.net/2021/11/07/C3-9584-1636298834-4676-1636299490.jpg?w=300&h=180&q=100&dpr=1&fit=crop&s=c0InP1-zplvo_ohd0S1_kQ',
-                        ),
-                      ),
-                    ],
-                  ),
-                  Divider(
-                    color: Colors.blueGrey,
-                  ),
-                  Text('01/01/2021',
-                      style: TextStyle(fontSize: 12, color: Colors.grey)),
-                  SizedBox(height: 5.0),
-                  Center(
-                    child: Text(
-                      'HIIT Yoga',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  SizedBox(height: 5.0),
-                  Text(
-                      'Tui đã hoàn thành bài tập hôm nay và tui cảm thấy tự hào :)'),
-                  SizedBox(height: 5.0),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Image.network(
-                          'https://i1-dulich.vnecdn.net/2021/11/11/3-1636626306.jpg?w=1200&h=0&q=100&dpr=2&fit=crop&s=d-QHSduvv6eASZ-alMmhdQ',
-                        ),
-                      ),
-                      SizedBox(width: 1.0),
-                      Expanded(
-                          child: Image.network(
-                        'https://i1-dulich.vnecdn.net/2021/11/11/1-1636626304.jpg?w=1200&h=0&q=100&dpr=2&fit=crop&s=wnv1riCfvctSV6bQGdcN_Q',
-                      )),
-                      SizedBox(width: 1.0),
-                      Expanded(
-                        child: Image.network(
-                          'https://i1-dulich.vnecdn.net/2021/11/07/C3-9584-1636298834-4676-1636299490.jpg?w=300&h=180&q=100&dpr=1&fit=crop&s=c0InP1-zplvo_ohd0S1_kQ',
-                        ),
+                            "https://i1-dulich.vnecdn.net/2021/11/08/3a8911b72378eb26b269.jpg?w=1200&h=0&q=100&dpr=2&fit=crop&s=iRkqXyc9uNoIAMFRA7FMuQ"),
                       ),
                     ],
                   ),
