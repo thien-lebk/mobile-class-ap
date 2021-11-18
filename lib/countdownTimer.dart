@@ -46,7 +46,7 @@ class _TimerAppState extends State<TimerApp> {
                     isActive = !isActive;
                   });
                 },
-                str: '▶',
+                str: '\u{25B6}',
                 backgroundColor: Colors.transparent,
                 borderColor: Color.fromRGBO(159, 158, 156, 40),
                 textColor: Color.fromRGBO(159, 158, 156, 40),
