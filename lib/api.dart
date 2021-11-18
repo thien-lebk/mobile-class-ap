@@ -169,14 +169,19 @@ class UserInfo {
 
     List<UserImage> lUserImage = [];
     try {
-      for (var index in json['images']) {
-        print('image *** $index');
-        print(UserImage.fromJson(index));
-        lUserImage.add(UserImage.fromJson(index));
+      for (var data in json['images']) {
+        // print('image ***');
+        // // print(data);
+        // var d = UserImage.fromJson(data);
+        // print(d);
+        // print('end d');
+        lUserImage.add(UserImage.fromJson(data));
       }
-    } catch (e) {}
-    print('333');
-    print(lUserImage);
+    } catch (e) {
+      print(e);
+    }
+    // print('lUserImage: ');
+    // print(lUserImage);
     return UserInfo(
         json['id'] as String,
         json['fullName'] as String,
@@ -227,13 +232,13 @@ class UserImage {
   String updatedAt;
 
   factory UserImage.fromJson(dynamic json) {
-    print('**** picture');
+    print('Inside userImage:');
     print(json);
     return UserImage(
       json['id'] as int,
-      json['type'] as String,
-      json['content'] as String,
-      json['url'] as String,
+      json['type'] ?? '-',
+      json['content'] ?? '-',
+      json['url'] ?? '-',
       json['isDeleted'] as bool,
       json['createdAt'] as String,
       json['updatedAt'] as String,
@@ -250,8 +255,8 @@ Future<List<UserInfo>> getUserList({required String token}) async {
     print(uri);
     final response = await http
         .get(uri, headers: {HttpHeaders.authorizationHeader: "Bearer $token"});
-    print('*-*');
-    print(response.body);
+    // print('response.body: ');
+    // print(response.body);
     // print(response.statusCode);
     if (response.statusCode != 200) {
       print('Unauthorize request');
@@ -260,6 +265,7 @@ Future<List<UserInfo>> getUserList({required String token}) async {
     // print(json.decode(utf8.decode(response.bodyBytes))['data']['data']['data']);
     final extractedData = json.decode(utf8.decode(response.bodyBytes))['data']
         ['data']['data'] as List<dynamic>;
+    print('extractedData: ');
     print(extractedData);
     List<UserInfo> listUser = [];
     for (var index in extractedData) {
@@ -515,12 +521,14 @@ Future uploadImage({required File toUploadFile, required String token}) async {
   var stream = new http.ByteStream(toUploadFile.openRead());
   stream.cast();
   var length = await toUploadFile.length();
-  var request = new http.MultipartRequest("POST", uri);
+  var request = new http.MultipartRequest("POST", uri)
+    ..fields['type'] = 'cover';
   request.headers['authorization'] = 'Bearer $token';
   var filename = basename(toUploadFile.path);
   var multipartFile =
       new http.MultipartFile('file', stream, length, filename: filename);
   request.files.add(multipartFile);
+
   var response = await request.send();
   var finalRes;
   response.stream.transform(utf8.decoder).listen(
