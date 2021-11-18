@@ -12,7 +12,7 @@ class Step3 extends StatefulWidget {
   final String fullName;
   final String aboutYou;
   final String dob;
-  final List<String> hobbies;
+  final List<int> hobbies;
   final String token;
   const Step3(
       {required this.fullName,
