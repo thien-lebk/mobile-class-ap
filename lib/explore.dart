@@ -106,24 +106,28 @@ class _ExploreState extends State<Explore> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            CustomButton(
-                              onTap: () {
-                                // Navigator.pushNamed(context, '/match');
-                              },
-                              str: 'X',
-                              backgroundColor: Colors.transparent,
-                              borderColor: Color.fromARGB(255, 240, 108, 123),
-                              textColor: Color.fromARGB(255, 223, 195, 198),
-                              width: 50,
-                            ),
+                            // CustomButton(
+                            //   onTap: () {
+                            //     // Navigator.pushNamed(context, '/match');
+                            //   },
+                            //   str: 'X',
+                            //   backgroundColor: Colors.transparent,
+                            //   borderColor: Color.fromARGB(255, 240, 108, 123),
+                            //   textColor: Color.fromARGB(255, 223, 195, 198),
+                            //   width: 50,
+                            // ),
                             CustomButton(
                               onTap: () {
                                 Navigator.pushNamed(context, '/match');
                               },
-                              str: '✔',
-                              backgroundColor:
-                                  Color.fromARGB(255, 184, 245, 235),
-                              borderColor: Colors.transparent,
+                              // str: '✔',
+                              // str: '❤️',
+                              str: '\u{2665}',
+                              // backgroundColor:
+                              //     Color.fromARGB(255, 184, 245, 235),
+                              borderColor: Colors.grey,
+                              backgroundColor: Colors.transparent,
+                              // borderColor: Colors.transparent,
                               textColor: Color.fromARGB(255, 22, 151, 130),
                               width: 50,
                             ),

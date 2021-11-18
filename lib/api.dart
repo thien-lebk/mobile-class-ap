@@ -376,9 +376,9 @@ Future<int> updateUser({
 
 Future<String> createPost({
   required String token,
-  String title = "1",
-  String content = "1",
-  List<String> images = const [],
+  required String title,
+  required String content,
+  required List<String> images,
 }) async {
   print('Call API createPost');
   String url = API_LINK + 'post';

@@ -43,7 +43,7 @@ class _MatchState extends State<Match> {
               ))),
               CustomButton(
                 onTap: () {
-                  Navigator.pushNamed(context, '/social');
+                  Navigator.pop(context);
                 },
                 str: 'Keep swiping',
                 backgroundColor: Colors.white,

@@ -50,10 +50,10 @@ class _FinishState extends State<Finish> {
               ))),
               CustomButton(
                 onTap: () async {
-                  // Navigator.pop(context);
-                  // Navigator.pop(context);
-                  // Navigator.pop(context);
-                  // Navigator.pop(context);
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                  Navigator.pop(context);
+                  Navigator.pop(context);
                   SharedPreferences prefs =
                       await SharedPreferences.getInstance();
                   String token = prefs.getString('token') ?? "*";

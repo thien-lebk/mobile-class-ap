@@ -47,7 +47,7 @@ class _SocialState extends State<Social> {
               Tab(child: Text('Explore')),
               Tab(child: Text('Exercise')),
               Tab(child: Text('Chat')),
-              Tab(child: Text('Video')),
+              Tab(child: Text('Trending')),
             ],
           ),
         ),
