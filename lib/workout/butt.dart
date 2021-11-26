@@ -15,26 +15,26 @@ class _ButtWorkoutState extends State<ButtWorkout> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.orangeAccent[200],
+        title: Text('Buttock Workout',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+      ),
       body: Container(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
-                flex: 1,
-                child: Padding(
-                    padding: const EdgeInsets.only(left: 28.0, top: 20.0),
-                    child: Text('ABS Workout',
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)))),
+            Expanded(child:Container()),
             Expanded(
                 flex: 1,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Image.asset(
-                        'assets/abs/birdDog.gif', width: 100, height: 50, fit: BoxFit.cover),
+                        'assets/leg/squats.gif', width: 100, height: 50, fit: BoxFit.cover),
                     Padding(
                       padding: const EdgeInsets.only(left: 10.0),
-                      child: Text('Bird Dog', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold))
+                      child: Text('Squats', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold))
                     )
                   ],
                 )),
@@ -44,10 +44,10 @@ class _ButtWorkoutState extends State<ButtWorkout> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Image.asset(
-                        'assets/abs/bridge.gif', width: 100, height: 50, fit: BoxFit.cover),
+                        'assets/leg/wallSit.gif', width: 100, height: 50, fit: BoxFit.cover),
                     Padding(
                         padding: const EdgeInsets.only(left: 10.0),
-                        child: Text('Bridge', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold))
+                        child: Text('Wall Sit', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold))
                     )
                   ],
                 )
@@ -58,10 +58,10 @@ class _ButtWorkoutState extends State<ButtWorkout> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Image.asset(
-                        'assets/abs/reverseCrunches.gif', width: 100, height: 50, fit: BoxFit.cover),
+                        'assets/buttock/buttBrigde.gif', width: 100, height: 50, fit: BoxFit.cover),
                     Padding(
                         padding: const EdgeInsets.only(left: 10.0),
-                        child: Text('Reverse Crunches', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold))
+                        child: Text('Butt Bridge', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold))
                     )
                   ],
                 )),
@@ -71,10 +71,10 @@ class _ButtWorkoutState extends State<ButtWorkout> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Image.asset(
-                        'assets/abs/sidePlank.gif', width: 100, height: 50, fit: BoxFit.cover),
+                        'assets/buttock/donkeyKicks.gif', width: 100, height: 50, fit: BoxFit.cover),
                     Padding(
                         padding: const EdgeInsets.only(left: 10.0),
-                        child: Text('Side Plank', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold))
+                        child: Text('Donkey Kicks', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold))
                     )
                   ],
                 )),

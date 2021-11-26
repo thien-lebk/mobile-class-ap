@@ -15,26 +15,26 @@ class _ArmWorkoutState extends State<ArmWorkout> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.orangeAccent[200],
+        title: Text('Arm Workout',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+      ),
       body: Container(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
-                flex: 1,
-                child: Padding(
-                    padding: const EdgeInsets.only(left: 28.0, top: 20.0),
-                    child: Text('ABS Workout',
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)))),
+            Expanded(child: Container()),
             Expanded(
                 flex: 1,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Image.asset(
-                        'assets/abs/birdDog.gif', width: 100, height: 50, fit: BoxFit.cover),
+                        'assets/fullbody/pushUp.gif', width: 100, height: 50, fit: BoxFit.cover),
                     Padding(
                       padding: const EdgeInsets.only(left: 10.0),
-                      child: Text('Bird Dog', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold))
+                      child: Text('Push Up', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold))
                     )
                   ],
                 )),
@@ -44,10 +44,10 @@ class _ArmWorkoutState extends State<ArmWorkout> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Image.asset(
-                        'assets/abs/bridge.gif', width: 100, height: 50, fit: BoxFit.cover),
+                        'assets/arm/tricepsDips.gif', width: 100, height: 50, fit: BoxFit.cover),
                     Padding(
                         padding: const EdgeInsets.only(left: 10.0),
-                        child: Text('Bridge', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold))
+                        child: Text('Triceps Dips', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold))
                     )
                   ],
                 )
@@ -58,10 +58,10 @@ class _ArmWorkoutState extends State<ArmWorkout> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Image.asset(
-                        'assets/abs/reverseCrunches.gif', width: 100, height: 50, fit: BoxFit.cover),
+                        'assets/arm/mountainClimber.gif', width: 100, height: 50, fit: BoxFit.cover),
                     Padding(
                         padding: const EdgeInsets.only(left: 10.0),
-                        child: Text('Reverse Crunches', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold))
+                        child: Text('Moutain Climber', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold))
                     )
                   ],
                 )),
@@ -71,10 +71,10 @@ class _ArmWorkoutState extends State<ArmWorkout> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Image.asset(
-                        'assets/abs/sidePlank.gif', width: 100, height: 50, fit: BoxFit.cover),
+                        'assets/arm/plank.gif', width: 100, height: 50, fit: BoxFit.cover),
                     Padding(
                         padding: const EdgeInsets.only(left: 10.0),
-                        child: Text('Side Plank', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold))
+                        child: Text('Plank', style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold))
                     )
                   ],
                 )),

@@ -15,16 +15,16 @@ class _LegWorkoutState extends State<LegWorkout> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.orangeAccent[200],
+        title: Text('Leg Workout',
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+      ),
       body: Container(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
-                flex: 1,
-                child: Padding(
-                    padding: const EdgeInsets.only(left: 28.0, top: 20.0),
-                    child: Text('Leg Workout',
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)))),
+            Expanded(child: Container()),
             Expanded(
                 flex: 1,
                 child: Row(
