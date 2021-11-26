@@ -5,6 +5,7 @@ import 'package:phinder/common.dart';
 import 'package:phinder/exercise.dart';
 import 'package:phinder/explore.dart';
 import 'package:phinder/news.dart';
+import 'package:phinder/profile.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class Social extends StatefulWidget {
@@ -26,7 +27,7 @@ class _SocialState extends State<Social> {
   Widget build(BuildContext context) {
     return DefaultTabController(
       initialIndex: 1,
-      length: 4,
+      length: 5,
       child: SafeArea(
         child: Scaffold(
           body: TabBarView(
@@ -38,16 +39,18 @@ class _SocialState extends State<Social> {
               ExerciseScreen(),
               ChatScreen(client: widget.client),
               NewsPage(),
+              Profile()
             ],
           ),
           bottomNavigationBar: TabBar(
             labelColor: Colors.black,
             unselectedLabelColor: Colors.grey[500],
             tabs: [
-              Tab(child: Text('Explore')),
-              Tab(child: Text('Exercise')),
-              Tab(child: Text('Chat')),
-              Tab(child: Text('Trending')),
+              Tab(child: Text('Explore', style: TextStyle(fontSize: 12))),
+              Tab(child: Text('Exercise', style: TextStyle(fontSize: 12))),
+              Tab(child: Text('Chat', style: TextStyle(fontSize: 12))),
+              Tab(child: Text('Trend', style: TextStyle(fontSize: 12))),
+              Tab(child: Text('Profile', style: TextStyle(fontSize: 12))),
             ],
           ),
         ),

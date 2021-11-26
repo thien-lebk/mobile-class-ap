@@ -59,7 +59,7 @@ class _FinishState extends State<Finish> {
                   String token = prefs.getString('token') ?? "*";
                   // List<UserInfo> listUser = await getUserList(token: token);
 
-                  await Navigator.push(
+                  await Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                           builder: (context) =>

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:phinder/about.dart';
 import 'package:phinder/chat.dart';
 import 'package:phinder/common.dart';
 import 'package:phinder/detail.dart';
@@ -7,6 +8,7 @@ import 'package:phinder/explore.dart';
 import 'package:phinder/finish.dart';
 import 'package:phinder/forgot.dart';
 import 'package:phinder/joinus.dart';
+import 'package:phinder/profile.dart';
 import 'package:phinder/signin.dart';
 import 'package:phinder/social.dart';
 import 'package:phinder/step1.dart';
@@ -88,6 +90,8 @@ class MyApp extends StatelessWidget {
         '/fullbody': (context) => FullBodyWorkout(),
         '/butt': (context) => ButtWorkout(),
         '/post': (context) => Post(),
+        '/profile': (context) => Profile(),
+        '/aboutUs': (context) => About(),
       },
     );
   }

@@ -167,7 +167,7 @@ class _SignInState extends State<SignIn> {
                                 else {
                                   // List<UserInfo> listUser =
                                   //     await getUserList(token: token);
-                                  await Navigator.push(
+                                  await Navigator.pushReplacement(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) => Social(
